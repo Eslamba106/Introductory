@@ -5,4 +5,6 @@ return [
     'arabic' => "Arabic",
     "english" => "English",
     'webname' => "Mywebsite",
+    'save'  => "Save",
+    
 ];

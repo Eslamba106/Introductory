@@ -17,17 +17,3 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; 2024-<?php $mytime = Carbon\Carbon::now();echo $mytime->format('Y'); ?> <a href="{{ config('app.developer_link') }}">{{ config('app.developer_name') }}</a>.</strong> All rights reserved.
 </footer>
-</div>
-<!-- ./wrapper -->
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-{{-- @stack('scripts')   --}}
-<script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('js/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('js/dist/adminlte.min.js') }}"></script>
-</body>
-
-</html>
