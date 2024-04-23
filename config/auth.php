@@ -46,7 +46,7 @@ return [
         ],
         'moderator' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'moderators',
         ],
     ],
 
@@ -78,7 +78,7 @@ return [
         ],
         'moderators' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Moderator::class,
         ],
 
         // 'users' => [

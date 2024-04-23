@@ -9,6 +9,10 @@ use App\Models\Page;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function index(){
 
         $pages = Page::paginate();

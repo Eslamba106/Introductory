@@ -11,10 +11,10 @@
 @endsection
 
 @section('breadcrumb')
-    Start
+{{ __('main.home') }}
 @endsection
 @section('content')
-    <a href="{{ route('lang' , 'en') }}">HELLO ESLAM</a>
+
 @endsection
 
 

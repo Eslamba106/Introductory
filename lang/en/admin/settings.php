@@ -11,5 +11,8 @@ return [
     "knowledge" => "Knowledge Center" ,
     "employment" => "Employment Applications",
     "contact" => "Contact Us" ,
+    "edit" => "Edit Settings",
+    "update" => "Update",
+    "info" => "Web Settings"
 
 ];

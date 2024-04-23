@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\ModeratorController;
+use App\Http\Controllers\Admin\ListSettingsController;
+use App\Http\Controllers\Admin\GeneralSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +48,39 @@ Route::delete('pages/delete/{slug}' , [PageController::class , 'destroy'])->name
 
 ########################################################################################
 
-Route::get('/settings/index' , [SettingsController::class , 'index'])->name('settings');
-Route::get('/settings/list_settings' , [SettingsController::class , 'list'])->name('list_settings');
+####################################### General Settings ####################################
+
+Route::get('/settings/general/index' , [GeneralSettingsController::class , 'index'])->name('admin.settings');
+Route::get('/settings/general/edit' , [GeneralSettingsController::class , 'edit'])->name('admin.settings.edit');
+Route::put('/settings/general/update/{id}' , [GeneralSettingsController::class , 'update'])->name('admin.settings.update');
+
+####################################### List Settings ####################################
+
+Route::get('/settings/list_settings' , [ListSettingsController::class , 'index'])->name('admin.list_settings');
+Route::get('/settings/list_settings/edit' , [ListSettingsController::class , 'edit'])->name('admin.list_settings.edit');
+Route::put('/settings/list_settings/update/{id}' , [ListSettingsController::class , 'update'])->name('admin.list_settings.update');
+
+################################# Create Moderators  #########################
+
+Route::get('moderators/index' , [ModeratorController::class , 'index'])->name('admin.moderator.index');
+Route::get('moderators/create' , [ModeratorController::class , 'create'])->name('admin.moderator.create');
+Route::post('moderators/store' , [ModeratorController::class , 'store'])->name('admin.moderator.store');
+// Route::get('moderators/show/{id}' , [ModeratorController::class , 'show'])->name('admin.moderator.show');
+Route::get('moderators/edit/{id}' , [ModeratorController::class , 'edit'])->name('admin.moderator.edit');
+Route::put('moderators/update/{id}' , [ModeratorController::class , 'update'])->name('admin.moderator.update');
+Route::delete('moderators/delete/{id}' , [ModeratorController::class , 'destroy'])->name('admin.moderator.destroy');
+
+################################# Blog Department  #########################
+
+Route::get('/blog/department/index' , [BlogController::class , 'index'])->name('admin.blog_department.index');
+Route::post('/blog/department/store' , [BlogController::class , 'store'])->name('admin.blog_department.store');
+Route::put('/blog/department/update' , [BlogController::class , 'update'])->name('admin.blog_department.update');
+Route::delete('/blog/department/delete' , [BlogController::class , 'delete'])->name('admin.blog_department.delete');
+
+################################ Blog Department ###########################
+
+// Route::middleware(['auth:admin'])->group(function(){
+//     Route::resource('/moderator', ModeratorController::class);
+//     Route::resource('roles', RoleController::class);
+// }); 
+
