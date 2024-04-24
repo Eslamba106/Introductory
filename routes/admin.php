@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\ArticalController;
 use App\Http\Controllers\Admin\ModeratorController;
 use App\Http\Controllers\Admin\ListSettingsController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
@@ -78,6 +79,16 @@ Route::put('/blog/department/update' , [BlogController::class , 'update'])->name
 Route::delete('/blog/department/delete' , [BlogController::class , 'delete'])->name('admin.blog_department.delete');
 
 ################################ Blog Department ###########################
+
+
+################################ Blog Artical ###########################
+
+Route::get('/blog/artical/index' , [ArticalController::class ,"index"])->name('admin.blog_artical.index');
+Route::post('/blog/artical/store' , [ArticalController::class ,"store"])->name('admin.blog_artical.store');
+Route::put('/blog/artical/update' , [ArticalController::class ,"update"])->name('admin.blog_artical.update');
+Route::delete('/blog/artical/delete/{id}' , [ArticalController::class ,"delete"])->name('admin.blog_artical.delete');
+
+################################ Blog Artical ###########################
 
 // Route::middleware(['auth:admin'])->group(function(){
 //     Route::resource('/moderator', ModeratorController::class);

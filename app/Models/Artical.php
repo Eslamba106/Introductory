@@ -9,7 +9,7 @@ class Artical extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'slug', 'title', 'writer', 'content', 'image', 'tags', 'status' ,'artical_id'];
+    protected $fillable = [ 'slug', 'title', 'writer', 'writer_type', 'content', 'image', 'tags', 'status' ,'blog_id'];
 
     public function department(){
         $this->belongsTo(Blog::class);

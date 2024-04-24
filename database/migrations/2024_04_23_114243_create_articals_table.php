@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('writer');
+            $table->integer('writer');
+            $table->enum('writer_type' , ["admin" , "moderator"]);
             $table->longText('content');
-            $table->foreignId('artical_id')->constrained('blogs')->cascadeOnDelete();
-            $table->string('image');
+            $table->foreignId('blog_id')->constrained('blogs')->cascadeOnDelete();
+            $table->string('image')->nullable();
             $table->json('tags')->nullable();
             $table->enum('status' , ['active' , 'archive']);
             $table->timestamps();
