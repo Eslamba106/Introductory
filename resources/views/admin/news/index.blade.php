@@ -1,61 +1,48 @@
 @extends('layouts.admin.dashboard')
 
 @section('title')
-    {{ __('admin/blog.department') }}
+    {{ __('admin/news.news_ads') }}
 @endsection
 
 @section('page_name')
-    {{ __('admin/blog.department') }}
+    {{ __('admin/news.news') }}
 @endsection
 
 @section('breadcrumb')
-    {{ __('admin/blog.department') }}
+    {{ __('admin/news.news_ads') }}
 @endsection
 @section('content')
 
-{{-- @if (session()->has('restore_invoice'))
-<script>
-    window.onload = function() {
-        notif({
-            msg: "تم الغاء أرشفة الفاتورة بنجاح",
-            type: "success"
-        })
-    }
 
-</script>
-@endif
-
-@if (session()->has('delete_department'))
-<script>
-    window.onload = function() {
-        notif({
-            msg: "تم حذف الفاتورة بنجاح",
-            type: "success"
-        })
-    }
-
-</script> --}}
-{{-- @endif --}}
-    <!-- Start Create Department !-->
+    <!-- Start Create Category !-->
     <div class="m-2">
-        <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-invoice_id="" data-toggle="modal"
-            data-target="#Transfer_invoice">{{ __('admin/blog.add_department') }}</a>
+        <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-toggle="modal"
+            data-target="#add_category">{{ __('admin/news.add_category') }}</a>
     </div>
-    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="add_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/blog.add_department') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/news.add_category') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.store') }}" method="post">
+                    <form action="{{ route('admin.news_categories.store') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="">{{ __('admin/blog.name') }}</label>
                                 <input class="form-control" type="text" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="">{{ __('admin/news.main') }}</label>
+                                <select class="form-control" name="parent_id" id="">
+                                    <option value="0"></option>
+                                    @foreach ($news_categories as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -68,30 +55,41 @@
             </div>
         </div>
     </div>
-    <!-- End Create Department !-->
+    <!-- End Create Category !-->
 
 
-    <!-- Start Edit Department !-->
+    <!-- Start Edit Category !-->
 
-    <div class="modal fade" id="editdepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="edit_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/blog.edit_department') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/news.edit_category') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.update') }}" method="post">
+                    <form action="{{ route('admin.news_categories.update') }}" method="post">
                         @method('put')
                         @csrf
 
                         <div class="modal-body">
+                            <div class="form-group">
                             <label for="">{{ __('admin/blog.name') }}</label>
-                            <input type="hidden" name="id" id="department_id" value="">
+                            <input type="hidden" name="id" id="category_id" >
                             <input class="form-control" type="text" name="name">
-
+                            </div>
+                            <div class="form-group">
+                                <label for="">{{ __('admin/news.main') }}</label>
+                                <select class="form-control" name="parent_id" id="">
+                                    <option value="0"></option>
+                                    @foreach ($news_categories as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">{{ __('admin/blog.cancel') }}</button>
@@ -102,25 +100,25 @@
             </div>
         </div>
     </div>
-    <!-- End Edit Department !-->
+    <!-- End Edit Category !-->
 
-    <!-- Start Delete Department !-->
-    <div class="modal fade" id="delete_department" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- Start Delete Category !-->
+    <div class="modal fade" id="delete_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/blog.delete_department') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/news.delete_category') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.delete' ) }}" method="post">
+                    <form action="{{ route('admin.news_categories.delete' ) }}" method="post">
                         @method('delete')
                         @csrf
 
                         <div class="modal-body">
                             {{ __('admin/blog.sure') }}
-                            <input type="hidden" name="id" id="delete_department" value="">
+                            <input type="hidden" name="id" id="category_id" value="">
 
                         </div>
                         <div class="modal-footer">
@@ -133,7 +131,7 @@
             </div>
         </div>
     </div>
-    <!-- End Delete Department !-->
+    <!-- End Delete Category !-->
 
 
     <table class="table">
@@ -149,26 +147,26 @@
             <x-alert type="info" />
             <x-alert type="fail" />
             {{-- @if ($products->count()) --}}
-            @forelse ($departments as $item)
+            @forelse ($news_categories as $item)
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
 
                     <td>
                         <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal"
-                            data-department_id="{{ $item->id }}"
-                            data-target="#editdepartment">{{ __('admin/blog.edit_department') }}</a>
+                            data-category_edit_id="{{ $item->id }}"
+                            data-target="#edit_category">{{ __('admin/news.edit_category') }}</a>
                     </td>
                     <td>
                         <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
-                            data-department_id="{{ $item->id }}"
-                            data-target="#delete_department">{{ __('admin/blog.delete_department') }}</a>
+                            data-category_id="{{ $item->id }}"
+                            data-target="#delete_category">{{ __('admin/news.delete_category') }}</a>
                     </td>
 
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7">{{ __('admin/blog.no_department') }}</td>
+                    <td colspan="7">{{ __('admin/news.no_categories') }}</td>
                 </tr>
             @endforelse
             {{-- @else
@@ -176,61 +174,26 @@
         @endif --}}
         </tbody>
     </table>
-    {{ $departments->withQueryString()->appends(['search' => 1])->links() }}
+    {{ $news_categories->withQueryString()->appends(['search' => 1])->links() }}
 @endsection
 @section('js')
     <script>
-        $('#editdepartment').on('show.bs.modal', function(event) {
+        $('#edit_category').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
-            var department_id = button.data('department_id')
+            var category_id = button.data('category_edit_id')
             var modal = $(this)
-            modal.find('.modal-body #department_id').val(department_id);
+            modal.find('.modal-body #category_id').val(category_id);
         })
     </script>
     <script>
-        $('#delete_department').on('show.bs.modal', function(event) {
+        $('#delete_category').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
-            var department_id = button.data('department_id')
+            var category_id = button.data('category_id')
             var modal = $(this)
-            modal.find('.modal-body #delete_department').val(department_id);
+            modal.find('.modal-body #category_id').val(category_id);
         })
     </script>
 @endsection
 
 
-{{-- 
 
-      <div class="m-2">
-        <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-invoice_id="" data-toggle="modal"
-            data-target="#Transfer_invoice">{{ __('admin/blog.add_department') }}</a>
-        <a href="{{ route('admin.moderator.create') }}" class="btn btn-sm btn-outline-primary mr-2">{{ __('admin/blog.add_department') }}</a> 
-    </div> 
-{{-- 
-    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/blog.add_department') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <form action="" method="post">
-                        @method('patch')
-                        @csrf
-
-                        <div class="modal-body">
-                            هل انت متاكد من عملية الغاء الارشفة ؟
-                            <input type="hidden" name="invoice_id" id="invoice_id" value="">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                            <button type="submit" class="btn btn-success">تاكيد</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-  --}}

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ArticalController;
 use App\Http\Controllers\Admin\ModeratorController;
 use App\Http\Controllers\Admin\ListSettingsController;
+use App\Http\Controllers\Admin\NewsCategoryController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 
 /*
@@ -84,11 +85,27 @@ Route::delete('/blog/department/delete' , [BlogController::class , 'delete'])->n
 ################################ Blog Artical ###########################
 
 Route::get('/blog/artical/index' , [ArticalController::class ,"index"])->name('admin.blog_artical.index');
+Route::get('/blog/artical/edit/{id}' , [ArticalController::class ,"edit"])->name('admin.blog_artical.edit');
+Route::get('/blog/artical/show/{id}' , [ArticalController::class ,"show"])->name('admin.blog_artical.show');
 Route::post('/blog/artical/store' , [ArticalController::class ,"store"])->name('admin.blog_artical.store');
-Route::put('/blog/artical/update' , [ArticalController::class ,"update"])->name('admin.blog_artical.update');
-Route::delete('/blog/artical/delete/{id}' , [ArticalController::class ,"delete"])->name('admin.blog_artical.delete');
+Route::put('/blog/artical/update/{id}' , [ArticalController::class ,"update"])->name('admin.blog_artical.update');
+Route::delete('/blog/artical/delete' , [ArticalController::class ,"delete"])->name('admin.blog_artical.delete');
 
 ################################ Blog Artical ###########################
+
+################################# News Categories  #########################
+
+Route::get('/news/categories/index' , [NewsCategoryController::class , 'index'])->name('admin.news_categories.index');
+Route::post('/news/categories/store' , [NewsCategoryController::class , 'store'])->name('admin.news_categories.store');
+Route::put('/news/categories/update' , [NewsCategoryController::class , 'update'])->name('admin.news_categories.update');
+Route::delete('/news/categories/delete' , [NewsCategoryController::class , 'delete'])->name('admin.news_categories.delete');
+
+################################ News Categories ###########################
+
+
+
+
+
 
 // Route::middleware(['auth:admin'])->group(function(){
 //     Route::resource('/moderator', ModeratorController::class);

@@ -179,7 +179,7 @@
 
                 {{-- Start Blog --}}
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ request()->is('admin/blog/department*') ? 'active' : '' }}">
+                    <a href="" class="nav-link {{ request()->is('admin/blog*') ? 'active' : '' }} ">
                         <p>
                             {{ __('admin/settings.blog') }}
                         </p>
@@ -189,7 +189,14 @@
                             <a href="{{ route('admin.blog_department.index') }}"
                                 class="nav-link {{ request()->is('admin/blog/department/index') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <p>{{ __('admin/blog.department') }}</p>
+                                <p>{{ __('admin/blog.departments') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.blog_artical.index') }}"
+                                class="nav-link {{ request()->is('admin/blog/artical/index') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/blog.articals') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -198,11 +205,27 @@
 
                 {{-- Start News And Ads --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ request()->is('admin/news*') ? 'active' : '' }}">
                         <p>
-                            {{ __('admin/settings.news') }}
+                            {{ __('admin/news.news_ads') }}
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.news_categories.index') }}"
+                                class="nav-link {{ request()->is('admin/news/categories*') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/news.category') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.blog_artical.index') }}"
+                                class="nav-link {{ request()->is('admin/news/categorie') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/news.news') }}</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 {{-- End News And Ads --}}
 

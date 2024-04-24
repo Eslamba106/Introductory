@@ -14,4 +14,8 @@ class Artical extends Model
     public function department(){
         $this->belongsTo(Blog::class);
     }
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->image);
+    }
 }

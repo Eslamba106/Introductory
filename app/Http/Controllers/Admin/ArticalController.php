@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
 use App\Models\Artical;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ class ArticalController extends Controller
 
         $articals = Artical::paginate();
         $departments = Blog::all();
-        return view('admin.artical.index', compact(['articals' , 'dapartments']));
+        return view('admin.blog_artical.index', compact(['articals' , 'departments']));
     }
 
     public function store(Request $request)
@@ -29,38 +30,55 @@ class ArticalController extends Controller
         // if($admin != null){
         $writer = $admin->id;
         $writer_type = "admin";
-        // }
-        // elseif($moderator != null){
-        //     $writer = $moderator->id;
-        //     $writer_type = "moderator";
-        // }
+        // dd($request->all());
+
         $request->validate([
             "title" => "required|string|max:255",
             "content" => "required",
-            "image" => "mimes:png,jpg",
+            // "image" => "mimes:png,jpg",
             "status" => "required",
-            "artical_id" => "required",
-        ]);
+            "blog_id" => "required",
+        ]);    
+        $slug = Str::slug($request->title, '-');
         $path = $this->uploadImage($request);
         Artical::create([
             "title" => $request->title,
             "content" => $request->content,
             "status" => $request->status,
-            "artical_id" => $request->artical_id,
+            "blog_id" => $request->blog_id ,
             "writer" => $writer,
             "writer_type" => $writer_type,
             "image" => $path,
+            "slug" => $slug,
+            'tags' => $request->tags,
         ]);
         return  redirect()->route('admin.blog_artical.index');
+    }
+
+    public function edit($id)
+    {
+
+        $artical = Artical::findOrFail($id);
+        $tags = json_decode($artical->tags);
+        $departments = Blog::all();
+        return view('admin.blog_artical.edit', compact(['artical' , 'departments' , 'tags']));
+    }
+    public function show($id)
+    {
+
+        $artical = Artical::findOrFail($id);
+        $tags = json_decode($artical->tags);
+
+        $writer = auth()->guard('admin')->user()->name;
+        return view('admin.blog_artical.show', compact(['artical' , 'writer' , 'tags']));
     }
     public function update(Request $request)
     {
         $request->validate([
             "title" => "required|string|max:255",
             "content" => "required",
-            "image" => "mimes:png,jpg",
             "status" => "required",
-            "artical_id" => "required",
+            "blog_id" => "required",
         ]);
         $artical = Artical::findOrFail($request->id);
         if ($artical->writer_type == "admin") {
@@ -68,15 +86,21 @@ class ArticalController extends Controller
             $old_image = $artical->image;
             if ($new_image) {
                 $image = $new_image;
+            }else{
+                $image = $old_image;
             }
-            Artical::create([
+            $slug = Str::slug($request->title, '-');
+
+            $artical->update([
                 "title" => $request->title,
                 "content" => $request->content,
                 "status" => $request->status,
                 "artical_id" => $request->artical_id,
                 "writer" => $artical->writer,
-                "writer_type" => $request->writer_type,
+                "writer_type" => $artical->writer_type,
                 "image" => $image,
+                "slug" => $slug,
+
             ]);
             if ($old_image && $new_image) {
                 Storage::disk('public')->delete($old_image);
@@ -85,17 +109,12 @@ class ArticalController extends Controller
 
         return  redirect()->route('admin.blog_artical.index');
     }
-    public function delete($id){
-        $artical = Artical::findOrFail($id);
+    public function delete(Request $request){
+        $artical = Artical::findOrFail($request->id);
         $artical->delete();
         // $artical->truncate();
         return  redirect()->route('admin.blog_artical.index');
     }
-
-
-
-
-
 
     protected function uploadImage(Request $request)
     {
