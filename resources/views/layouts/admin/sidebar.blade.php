@@ -219,8 +219,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.blog_artical.index') }}"
-                                class="nav-link {{ request()->is('admin/news/categorie') ? 'active' : '' }}">
+                            <a href="{{ route('admin.news_ads.index') }}"
+                                class="nav-link {{ request()->is('admin/news/news_ads*') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <p>{{ __('admin/news.news') }}</p>
                             </a>
@@ -231,11 +231,27 @@
 
                 {{-- Start Knowledge Center --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ request()->is('admin/knowledge*') ? 'active' : '' }}">
                         <p>
                             {{ __('admin/settings.knowledge') }}
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.knowledge_categories.index') }}"
+                                class="nav-link {{ request()->is('admin/knowledge/categories*') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/news.category') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.knowledge_center.index') }}"
+                                class="nav-link {{ request()->is('admin/knowledge/center*') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/settings.knowledge') }}</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 {{-- End Knowledge Center --}}
 

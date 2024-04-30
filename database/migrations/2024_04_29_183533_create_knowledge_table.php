@@ -11,18 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('knowledge', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->longText('content');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->json('tags')->nullable();
-            $table->integer('writer');
             $table->unsignedBigInteger('views')->nullable()->default(0);
-            $table->enum('writer_type' , ["admin" , "moderator"]);
-            $table->foreignId('news_category_id')->constrained('news_categories')->cascadeOnDelete();
-            $table->enum('status' , ['active' , 'archive']);            
+            $table->foreignId('knowledge_category_id')->constrained('knowledge_categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('knowledge');
     }
 };

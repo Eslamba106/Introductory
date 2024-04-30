@@ -25,13 +25,13 @@ class RedirectIfAuthenticated
                     // redirect for backend
                     return redirect(RouteServiceProvider::ADMIN);
                 }
-                // elseif($request->is('moderator') || $request->is('moderator/*'))
-                // {
-                //     // redirect for frontend in case front
+                elseif($request->is('moderator') || $request->is('moderator/*'))
+                {
+                    // redirect for frontend in case front
                 //    return redirect(RouteServiceProvider::HOME);
-                // //    return redirect(RouteServiceProvider::Admin);
+                   return redirect(RouteServiceProvider::ADMIN);
     
-                // }    
+                }    
                 // else
                 // {
                 //     return redirect(RouteServiceProvider::HOME);
