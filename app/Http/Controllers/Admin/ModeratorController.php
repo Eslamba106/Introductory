@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Moderator;
 
 
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -64,8 +65,9 @@ class ModeratorController extends Controller
     public function edit($id)
     {
         $moderator = User::findOrFail($id);
-        
-        return view('admin.moderators.edit', compact('moderator'));
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $moderator->roles->pluck('name', 'name')->all();
+        return view('admin.moderators.edit', compact(['moderator' ,'roles', 'userRole']));
     }
 
     public function update(Request $request , $id)
@@ -74,12 +76,27 @@ class ModeratorController extends Controller
             'name' => 'required',
             // 'email' => 'required|email|unique:moderators,email', 
         ]);
-        $moderator = User::findOrFail($id);
-        $moderator->update([
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
+        }
+        $user = User::find($id);
+        // $user->update($input);
+        $user->update([
             "name" => $request->name,
             "email" => $request->email,
+            "roles_name" => $request->roles,
             "password" => Hash::make($request->password),
         ]);
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $user->assignRole($request->input('roles'));
+        // return redirect()->route('users.index')
+            // ->with('success', 'تم تحديث معلومات المستخدم بنجاح');
+        // $moderator = User::findOrFail($id);
+
+        
         return redirect()->route('moderator.index')->with('success', "Update Successfully" );
     }
 

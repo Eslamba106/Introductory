@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\Knowledge;
 use Illuminate\Support\Str;
@@ -14,7 +14,7 @@ class KnowledgeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
     public function index() //Request $request
     {
@@ -36,7 +36,7 @@ class KnowledgeController extends Controller
         $departments = KnowledgeCategory::all();
 
 
-        return view('admin.knowledge_center.index', compact(['knowledge' , 'departments']));
+        return view('moderator.knowledge_center.index', compact(['knowledge' , 'departments']));
     }
 
     public function store(Request $request)
@@ -58,7 +58,7 @@ class KnowledgeController extends Controller
             "slug" => $slug,
             'tags' => $request->tags,
         ]);
-        return  redirect()->route('admin.knowledge_center.index');
+        return  redirect()->route('moderator.knowledge_center.index');
     }
 
     public function edit($id)
@@ -67,7 +67,7 @@ class KnowledgeController extends Controller
         $knowledge = Knowledge::findOrFail($id);
         $tags = json_decode($knowledge->tags);
         $departments = KnowledgeCategory::all();
-        return view('admin.knowledge_center.edit', compact(['knowledge' , 'departments' , 'tags']));
+        return view('moderator.knowledge_center.edit', compact(['knowledge' , 'departments' , 'tags']));
     }
     public function show($id)
     {
@@ -75,7 +75,7 @@ class KnowledgeController extends Controller
         $knowledge = Knowledge::findOrFail($id);
         $tags = json_decode($knowledge->tags);
         $department = KnowledgeCategory::where('id' , $knowledge->knowledge_category_id)->first();
-        return view('admin.knowledge_center.show', compact(['knowledge' , 'tags' , 'department']));
+        return view('moderator.knowledge_center.show', compact(['knowledge' , 'tags' , 'department']));
     }
     public function update(Request $request)
     {
@@ -106,13 +106,13 @@ class KnowledgeController extends Controller
                 Storage::disk('public')->delete($old_image);
             }
         
-        return  redirect()->route('admin.knowledge_center.index');
+        return  redirect()->route('moderator.knowledge_center.index');
     }
     public function delete(Request $request){
         $knowledge = Knowledge::findOrFail($request->id);
         $knowledge->delete();
         Storage::disk('public')->delete($knowledge->image);
-        return  redirect()->route('admin.knowledge_center.index');
+        return  redirect()->route('moderator.knowledge_center.index');
     }
 
     protected function uploadImage(Request $request)

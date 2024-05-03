@@ -186,7 +186,7 @@
             @forelse ($articals as $item)
                 <tr>
                     <td>{{ $item->title }}</td>
-                    <?php $writer = App\Models\Admin::where('id' ,$item->writer )->first(); ?>
+                    <?php $writer = App\Models\User::where('id' ,$item->writer )->first(); ?>
                     <td>{{  $writer->name}}</td>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
 

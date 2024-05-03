@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
 
     public function loginPage(Request $request){
-        return view("admin.login");
+        return view("moderator.login");
     }
 
 
@@ -36,6 +36,6 @@ class AuthController extends Controller
 
     public function logout(){
         auth()->logout();
-        return redirect()->route('admin.login-page');
+        return redirect()->route('moderator.login-page');
     }
 }

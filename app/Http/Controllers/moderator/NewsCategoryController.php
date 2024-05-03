@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
@@ -8,10 +8,14 @@ use App\Http\Controllers\Controller;
 
 class NewsCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.type:moderator');
+    }
     public function index(){
         $news_categories = NewsCategory::paginate(); 
 
-        return view('admin.news.index' , compact('news_categories'));
+        return view('moderator.news.index' , compact('news_categories'));
     }
 
     public function store(Request $request){
@@ -22,7 +26,7 @@ class NewsCategoryController extends Controller
             "name" => $request->name,
             "parent_id" => $request->parent_id ?? 0,
         ]);
-        return redirect()->route('admin.news_categories.index');
+        return redirect()->route('user.news_categories.index');
     }
 
     public function update(Request $request){
@@ -33,7 +37,7 @@ class NewsCategoryController extends Controller
             "name" => $request->name,
             "parent_id" => $request->parent_id ?? 0,
         ]);
-        return redirect()->route('admin.news_categories.index');
+        return redirect()->route('user.news_categories.index');
     }
     public function delete(Request $request){
 
@@ -41,6 +45,6 @@ class NewsCategoryController extends Controller
         $department = NewsCategory::findOrFail($request->id);
         $department->delete();
 
-        return redirect()->route('admin.news_categories.index')->with('delete_department');
+        return redirect()->route('user.news_categories.index')->with('delete_department');
     }
 }

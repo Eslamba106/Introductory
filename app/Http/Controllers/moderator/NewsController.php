@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\News;
 use Illuminate\Support\Str;
@@ -12,24 +12,26 @@ class NewsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
-    public function index(){
+    public function index()
+    {
 
-        $news = News::paginate(); 
+        $news = News::paginate();
         $news_categories = NewsCategory::all();
-        return view('admin.news_ads.index' , compact(['news' , 'news_categories']));
+        return view('moderator.news_ads.index', compact(['news', 'news_categories']));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         // $request->validate(['name' => "required"]);
 
-        $admin = auth()->user();
+        $moderator = auth()->user();
         // $moderator = auth()->user();
-        // if($admin != null){
-        $writer = $admin->id;
-        $writer_type = "admin";
+        // if($moderator != null){
+        $writer = $moderator->id;
+        $writer_type = "moderator";
         // dd($request);
 
         $request->validate([
@@ -38,7 +40,7 @@ class NewsController extends Controller
             // "image" => "mimes:png,jpg",
             "status" => "required",
             "news_category_id" => "required",
-        ]);    
+        ]);
         $slug = Str::slug($request->title, '-');
         $path = $this->uploadImage($request);
         // dd($path);
@@ -46,48 +48,51 @@ class NewsController extends Controller
             "title" => $request->title,
             "content" => $request->content,
             "status" => $request->status,
-            "news_category_id" => $request->news_category_id ,
+            "news_category_id" => $request->news_category_id,
             "writer" => $writer,
             "writer_type" => $writer_type,
             "image" => $path,
             "slug" => $slug,
             'tags' => $request->tags,
         ]);
-        return redirect()->route('admin.news_ads.index');
+        return redirect()->route('user.news_ads.index');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         $news = News::findOrFail($id);
         $news_categories = NewsCategory::all();
 
-        return view('admin.news_ads.edit' ,  compact(['news' , 'news_categories']));
+        return view('moderator.news_ads.edit',  compact(['news', 'news_categories']));
     }
-    public function show($id){
-        
+    public function show($id)
+    {
+
         $writer = auth()->user()->name;
         $news = News::findOrFail($id);
         $tags = json_decode($news->tags);
         $news->increment('views');
         $news_category = NewsCategory::find($news->news_category_id);
-        return view('admin.news_ads.show', compact(['news' , 'news_category' , 'writer' , 'tags']));
+        return view('moderator.news_ads.show', compact(['news', 'news_category', 'writer', 'tags']));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         $news =  News::findOrFail($request->id);
-        
-        $admin = auth()->user();
+
+        $moderator = auth()->user();
         // $moderator = auth()->user();
-        // if($admin != null){
-        $writer = $admin->id;
-        $writer_type = "admin";
+        // if($moderator != null){
+        $writer = $moderator->id;
+        $writer_type = "moderator";
         // $request->validate(['name' => "required"]);
         $new_image = $this->uploadImage($request);
         $old_image = $news->image;
         if ($new_image) {
             $image = $new_image;
-        }else{
+        } else {
             $image = $old_image;
         }
         $slug = Str::slug($request->title, '-');
@@ -96,22 +101,23 @@ class NewsController extends Controller
             "title" => $request->title,
             "content" => $request->content,
             "status" => $request->status,
-            "news_category_id" => $request->news_category_id ,
+            "news_category_id" => $request->news_category_id,
             "writer" => $writer,
             "writer_type" => $writer_type,
             "image" => $image,
             "slug" => $slug,
             'tags' => $request->tags,
         ]);
-        return redirect()->route('admin.news_ads.index');
+        return redirect()->route('user.news_ads.index');
     }
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
 
         // dd($request->id);
         $department = News::findOrFail($request->id);
         $department->delete();
 
-        return redirect()->route('admin.news_ads.index')->with('delete_department');
+        return redirect()->route('user.news_ads.index')->with('delete_department');
     }
 
     protected function uploadImage(Request $request)

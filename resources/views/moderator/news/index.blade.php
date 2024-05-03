@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.moderator.dashboard')
 
 @section('title')
     {{ __('admin/news.news_ads') }}
@@ -15,10 +15,15 @@
 
 
     <!-- Start Create Category !-->
+    @can('create')
+        
+  
     <div class="m-2">
         <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-toggle="modal"
             data-target="#add_category">{{ __('admin/news.add_category') }}</a>
     </div>
+    @endcan
+    @can('create')
     <div class="modal fade" id="add_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -28,7 +33,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.news_categories.store') }}" method="post">
+                    <form action="{{ route('user.news_categories.store') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -55,10 +60,13 @@
             </div>
         </div>
     </div>
+    @endcan
     <!-- End Create Category !-->
 
 
     <!-- Start Edit Category !-->
+@can('edit')
+    
 
     <div class="modal fade" id="edit_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -69,7 +77,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.news_categories.update') }}" method="post">
+                    <form action="{{ route('user.news_categories.update') }}" method="post">
                         @method('put')
                         @csrf
 
@@ -101,8 +109,9 @@
         </div>
     </div>
     <!-- End Edit Category !-->
-
+    @endcan
     <!-- Start Delete Category !-->
+    @can('delete')
     <div class="modal fade" id="delete_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -112,7 +121,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.news_categories.delete' ) }}" method="post">
+                    <form action="{{ route('user.news_categories.delete' ) }}" method="post">
                         @method('delete')
                         @csrf
 
@@ -131,6 +140,7 @@
             </div>
         </div>
     </div>
+    @endcan
     <!-- End Delete Category !-->
 
 

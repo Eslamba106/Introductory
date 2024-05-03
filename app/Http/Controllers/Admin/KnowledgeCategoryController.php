@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class KnowledgeCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.type:admin');
+    }
     public function index(){
         $knowledge_categories = KnowledgeCategory::paginate(); 
         // $knowledge_categories = KnowledgeCategory::paginate(); 

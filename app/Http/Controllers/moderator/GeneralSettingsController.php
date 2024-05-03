@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use Illuminate\Http\Request;
 use App\Models\GeneralSetting;
@@ -11,18 +11,18 @@ class GeneralSettingsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
     public function index()
     {
         $general_settings = GeneralSetting::first();
         // dd($general_settings->image_url);
-        return view('admin.general_settings.index' , compact('general_settings'));
+        return view('moderator.general_settings.index' , compact('general_settings'));
     }
     public function edit()
     {
     $general_settings = GeneralSetting::first();
-    return view('admin.general_settings.edit' , compact('general_settings'));
+    return view('moderator.general_settings.edit' , compact('general_settings'));
 }
     public function update(Request $request){
         
@@ -52,7 +52,7 @@ class GeneralSettingsController extends Controller
         if ($old_image && $new_image) {
             Storage::disk('public')->delete($old_image);
         }
-        return redirect()->route('admin.settings')->with('success' ,"{{  __('admin/general.update') }}");
+        return redirect()->route('moderator.settings')->with('success' ,"{{  __('admin/general.update') }}");
     }
 
     protected function uploadImage(Request $request)

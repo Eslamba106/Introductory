@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\User;
 
@@ -17,19 +17,19 @@ class ModeratorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
     public function index()
     {
         $moderators = User::where('type' , 'moderator')->orderBy('id', 'DESC')->paginate(5);
-        return view('admin.moderators.index', compact('moderators'));
+        return view('moderator.moderators.index', compact('moderators'));
     }
 
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
 
-        return view('admin.moderators.create' , compact('roles'));
+        return view('moderator.moderators.create' , compact('roles'));
     }
 
 // Cample
@@ -58,14 +58,14 @@ class ModeratorController extends Controller
     public function show($id)
     {
         $moderator = User::findOrFail($id);
-        return view('admin.moderators.show', compact('moderator'));
+        return view('moderator.moderators.show', compact('moderator'));
     }
 
     public function edit($id)
     {
         $moderator = User::findOrFail($id);
         
-        return view('admin.moderators.edit', compact('moderator'));
+        return view('moderator.moderators.edit', compact('moderator'));
     }
 
     public function update(Request $request , $id)

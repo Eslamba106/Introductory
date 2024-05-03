@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -11,15 +11,15 @@ class PageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
     public function index(){
 
         $pages = Page::paginate();
-        return view('admin.pages.index' , compact('pages'));
+        return view('moderator.pages.index' , compact('pages'));
     }
     public function create(){
-        return view('admin.pages.create');
+        return view('moderator.pages.create');
     }
     public function store(Request $request){
         $request->validate([
@@ -35,7 +35,7 @@ class PageController extends Controller
             'content' => $request->content,
             'tags' => $request->tags,
         ]);
-        return redirect()->route('admin.page.index');
+        return redirect()->route('moderator.page.index');
     }
     public function upload(Request $request)
     {
@@ -59,7 +59,7 @@ class PageController extends Controller
         $page = Page::where('slug' , $slug)->first();
         $tags = json_decode($page->tags);
         // dd(gettype($tags));
-        return view('admin.pages.show' , compact(['page' , 'tags']));
+        return view('moderator.pages.show' , compact(['page' , 'tags']));
     }
     public function destroy($slug){
         // $page = Page::where('slug' , $slug)->first();

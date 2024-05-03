@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.moderator.dashboard')
 
 @section('title')
     {{ __('admin/blog.department') }}
@@ -37,10 +37,15 @@
 </script> --}}
 {{-- @endif --}}
     <!-- Start Create Department !-->
+    @can('create')
+        
+    
     <div class="m-2">
         <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-invoice_id="" data-toggle="modal"
             data-target="#Transfer_invoice">{{ __('admin/blog.add_department') }}</a>
     </div>
+    @endcan
+    @can('create')
     <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -50,7 +55,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.store') }}" method="post">
+                    <form action="{{ route('user.blog_department.store') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -68,11 +73,13 @@
             </div>
         </div>
     </div>
+    @endcan
     <!-- End Create Department !-->
 
 
     <!-- Start Edit Department !-->
-
+    @can('edit')
+        
     <div class="modal fade" id="editdepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -82,7 +89,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.update') }}" method="post">
+                    <form action="{{ route('user.blog_department.update') }}" method="post">
                         @method('put')
                         @csrf
 
@@ -102,9 +109,13 @@
             </div>
         </div>
     </div>
+    
+@endcan
     <!-- End Edit Department !-->
 
     <!-- Start Delete Department !-->
+    @can('delete')
+        
     <div class="modal fade" id="delete_department" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -114,7 +125,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.blog_department.delete' ) }}" method="post">
+                    <form action="{{ route('user.blog_department.delete' ) }}" method="post">
                         @method('delete')
                         @csrf
 
@@ -133,6 +144,8 @@
             </div>
         </div>
     </div>
+    @endcan
+
     <!-- End Delete Department !-->
 
 
@@ -153,17 +166,20 @@
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
-
+                    @can('edit')
                     <td>
                         <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal"
                             data-department_id="{{ $item->id }}"
                             data-target="#editdepartment">{{ __('admin/blog.edit_department') }}</a>
                     </td>
+                    @endcan
+                    @can('delete')
                     <td>
                         <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                             data-department_id="{{ $item->id }}"
                             data-target="#delete_department">{{ __('admin/blog.delete_department') }}</a>
                     </td>
+                    @endcan
 
                 </tr>
             @empty

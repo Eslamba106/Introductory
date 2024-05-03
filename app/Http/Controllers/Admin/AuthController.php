@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
 
     public function loginPage(Request $request){
-        return view("moderator.login");
+        return view("admin.login");
     }
 
 
@@ -36,6 +36,6 @@ class AuthController extends Controller
 
     public function logout(){
         auth()->logout();
-        return redirect()->route('moderator.login-page');
+        return redirect()->route('admin.login-page');
     }
 }

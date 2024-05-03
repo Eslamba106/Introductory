@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\moderator;
 
 use App\Models\ListSetting;
 use Illuminate\Http\Request;
@@ -11,18 +11,18 @@ class ListSettingsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.type:admin');
+        $this->middleware('auth.type:moderator');
     }
     public function index()
     {
         $list_settings = ListSetting::first();
         // dd($general_settings->image_url);
-        return view('admin.list_settings.index' , compact('list_settings'));
+        return view('moderator.list_settings.index' , compact('list_settings'));
     }
     public function edit()
     {
     $list_settings = ListSetting::first();
-    return view('admin.list_settings.edit' , compact('list_settings'));
+    return view('moderator.list_settings.edit' , compact('list_settings'));
 }
     public function update(Request $request){
         // 'facebook', 'x', 'linked_in', 'instagram', 'phone', 'email'
@@ -47,7 +47,7 @@ class ListSettingsController extends Controller
         //     "logo" => $new_image ?? $old_image ,
         // ]);
 
-        return redirect()->route('admin.list_settings')->with('success' ,"{{  __('admin/general.update') }}");
+        return redirect()->route('moderator.list_settings')->with('success' ,"{{  __('admin/general.update') }}");
     }
 
     protected function uploadImage(Request $request)

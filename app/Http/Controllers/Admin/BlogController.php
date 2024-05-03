@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function __construct()
+    {
+        $this->middleware('auth.type:admin');
+    }    public function index(){
 
         $departments = Blog::paginate();
         return view('admin.blog_department.index' , compact('departments'));

@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class NewsCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.type:admin');
+    }
     public function index(){
         $news_categories = NewsCategory::paginate(); 
 
