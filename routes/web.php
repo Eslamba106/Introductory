@@ -20,3 +20,6 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang'); 
+
+require __DIR__.'/admin.php';
+require __DIR__.'/moderator.php';

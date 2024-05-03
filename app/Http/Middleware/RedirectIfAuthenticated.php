@@ -21,24 +21,14 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if($request->is('admin') || $request->is('admin/*')){
-                    // redirect for backend
-                    return redirect(RouteServiceProvider::ADMIN);
+                if(auth()->user()->type == 'admin'){
+                return redirect(RouteServiceProvider::ADMIN);
+                }else{
+                    return redirect(RouteServiceProvider::HOME);   
                 }
-                elseif($request->is('moderator') || $request->is('moderator/*'))
-                {
-                    // redirect for frontend in case front
-                //    return redirect(RouteServiceProvider::HOME);
-                   return redirect(RouteServiceProvider::ADMIN);
-    
-                }    
-                // else
-                // {
-                //     return redirect(RouteServiceProvider::HOME);
-
-                // }        
+            }           
             }
-        }
+        
 
         return $next($request);
     }

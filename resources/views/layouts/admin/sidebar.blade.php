@@ -16,7 +16,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <a href="#" class="d-block">{{ auth()->guard('admin')->user()->name }}</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -138,38 +138,39 @@
                 
                 {{-- Start Moderatory --}}
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ request()->is('admin/moderators*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/moderator*') ? 'active' : '' }}">
                         <p>
                             {{ __('admin/settings.moderators') }}
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.moderator.index') }}"
-                                class="nav-link {{ request()->is('admin/moderators/index') ? 'active' : '' }}">
+                            <a href="{{ route('moderator.index') }}"
+                                class="nav-link {{ request()->is('admin/moderator/') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <p>{{ __('admin/moderator.moderators') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.moderator.create') }}"
-                                class="nav-link {{ request()->is('admin/moderators/create') ? 'active' : '' }}">
+                            <a href="{{ route('moderator.create') }}"
+                                class="nav-link {{ request()->is('admin/moderator/create') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <p>{{ __('admin/moderator.add_moderator') }}</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('admin/moderators/show') ? 'active' : '' }}">
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <p>{{ __('admin/moderator.show_moderator') }}</p>
-                            </a>
-                        </li> --}}
+      
                         <li class="nav-item">
                             <a href="#"
-                                class="nav-link {{ request()->is('admin/moderators/edit*') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('admin/moderator/edit*') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <p>{{ __('admin/moderator.edit_moderator') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('roles.index') }}"
+                                class="nav-link {{ request()->is('admin/roles*') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <p>{{ __('admin/moderator.roles') }}</p>
                             </a>
                         </li>
 

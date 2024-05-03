@@ -14,5 +14,6 @@ return [
     "save" => "Save",
     "store" => "Moderator Created Successfully",
     "update" => "Update",
+    "roles"  => "Roles",
     
 ];

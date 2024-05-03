@@ -19,6 +19,7 @@ class Authenticate extends Middleware
                 return route('admin.login-page');
             } elseif ($request->is('moderator') || $request->is('moderator/*')) 
             {
+                return route('moderator.login-page');
                 // in case front end
                 // return route('login-page');
 

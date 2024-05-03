@@ -1,25 +1,15 @@
-@extends('layouts.master')
-@section('css')
-    <!--Internal  Font Awesome -->
-    <link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-    <!--Internal  treeview -->
-    <link href="{{URL::asset('assets/plugins/treeview/treeview-rtl.css')}}" rel="stylesheet" type="text/css" />
-@endsection
-@section('title')
-    تعديل الصلاحيات - اسلام سوفت للادارة القانونية
-@stop
+@extends('layouts.admin.dashboard')
 
-@section('page-header')
-<!-- breadcrumb -->
-<div class="breadcrumb-header justify-content-between">
-    <div class="my-auto">
-        <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الصلاحيات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ تعديل
-                الصلاحيات</span>
-        </div>
-    </div>
-</div>
-<!-- breadcrumb -->
+@section('title')
+    {{ __('admin/pages.pages') }}
+@endsection
+
+@section('page_name')
+    {{ __('admin/pages.pages') }}
+@endsection
+
+@section('breadcrumb')
+    {{ __('admin/pages.pages') }}
 @endsection
 @section('content')
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ArticalController;
 use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\ModeratorController;
@@ -26,10 +27,10 @@ use App\Http\Controllers\Admin\KnowledgeCategoryController;
 
     Route::get('/', function () {
         return view('admin.dashboard');
-    })->middleware('auth:admin');
+    })->middleware('auth.type:admin');
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
-})->name('admin.dashboard')->middleware('auth:admin');
+})->name('admin.dashboard')->middleware('auth.type:admin');
 
 
 
@@ -39,7 +40,7 @@ Route::get('/login', [AuthController::class, 'loginPage'])->middleware('guest')-
 
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('login.admin');
 
-Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:admin')->name('logout.admin');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth.type:admin')->name('logout.admin');
 
 ################################### Pages ##############################################
 
@@ -67,13 +68,13 @@ Route::put('/settings/list_settings/update/{id}' , [ListSettingsController::clas
 
 ################################# Create Moderators  #########################
 
-Route::get('moderators/index' , [ModeratorController::class , 'index'])->name('admin.moderator.index');
-Route::get('moderators/create' , [ModeratorController::class , 'create'])->name('admin.moderator.create');
-Route::post('moderators/store' , [ModeratorController::class , 'store'])->name('admin.moderator.store');
+// Route::get('moderators/index' , [ModeratorController::class , 'index'])->name('admin.moderator.index');
+// Route::get('moderators/create' , [ModeratorController::class , 'create'])->name('admin.moderator.create');
+// Route::post('moderators/store' , [ModeratorController::class , 'store'])->name('admin.moderator.store');
 // Route::get('moderators/show/{id}' , [ModeratorController::class , 'show'])->name('admin.moderator.show');
-Route::get('moderators/edit/{id}' , [ModeratorController::class , 'edit'])->name('admin.moderator.edit');
-Route::put('moderators/update/{id}' , [ModeratorController::class , 'update'])->name('admin.moderator.update');
-Route::delete('moderators/delete/{id}' , [ModeratorController::class , 'destroy'])->name('admin.moderator.destroy');
+// Route::get('moderators/edit/{id}' , [ModeratorController::class , 'edit'])->name('admin.moderator.edit');
+// Route::put('moderators/update/{id}' , [ModeratorController::class , 'update'])->name('admin.moderator.update');
+// Route::delete('moderators/delete/{id}' , [ModeratorController::class , 'destroy'])->name('admin.moderator.destroy');
 
 ################################# Blog Department  #########################
 
@@ -136,6 +137,10 @@ Route::delete('/knowledge/center/delete' , [KnowledgeController::class , 'delete
 
 #############################################################################
 
+Route::middleware(['auth.type:admin'])->group(function(){
+    Route::resource('/moderator', ModeratorController::class);
+    Route::resource('roles', RoleController::class);
+});
 
 
 
@@ -143,8 +148,7 @@ Route::delete('/knowledge/center/delete' , [KnowledgeController::class , 'delete
 
 
 
-
-// Route::middleware(['auth:admin'])->group(function(){
+// Route::middleware(['auth.type:admin'])->group(function(){
 //     Route::resource('/moderator', ModeratorController::class);
 //     Route::resource('roles', RoleController::class);
 // }); 
