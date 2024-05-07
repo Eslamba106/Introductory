@@ -1,15 +1,15 @@
 @extends('layouts.admin.dashboard')
 
 @section('title')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/permission.edit') }}
 @endsection
 
 @section('page_name')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/permission.edit') }}
 @endsection
 
 @section('breadcrumb')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/permission.permission') }}
 @endsection
 @section('content')
 
@@ -36,7 +36,7 @@
             <div class="card-body">
                 <div class="main-content-label mg-b-5">
                     <div class="form-group">
-                        <p>اسم الصلاحية :</p>
+                        <p>{{ __('admin/permission.name') }}:</p>
                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <!-- col -->
                     <div class="col-lg-4">
                         <ul id="treeview1">
-                            <li><a href="#">الصلاحيات</a>
+                            <li><a href="#">{{ __('admin/permission.permission') }}</a>
                                 <ul>
                                     <li>
                                         @foreach($permission as $value)
@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">تحديث</button>
+                        <button type="submit" class="btn btn-main-primary">{{ __('admin/permission.update') }}</button>
                     </div>
                     <!-- /col -->
                 </div>

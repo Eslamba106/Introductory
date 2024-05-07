@@ -10,4 +10,5 @@ return [
     "main" => "القسم الرئيسي",
     "delete_category" => "حذف التصنيف",
     "edit_category" => "تعديل التصنيف",
+    'no_news'   => "لا يوجد اخبار",
 ]; 

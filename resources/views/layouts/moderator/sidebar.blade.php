@@ -110,13 +110,13 @@
                 {{-- End Knowledge Center --}}
 
                 {{-- Start Employment Applications --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <p>
                             {{ __('admin/settings.employment') }}
                         </p>
                     </a>
-                </li>
+                </li> --}}
                 {{-- End Employment Applications --}}
 
  

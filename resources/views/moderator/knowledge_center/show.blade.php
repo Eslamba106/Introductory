@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.moderator.dashboard')
 
 @section('title')
     {{ __('admin/knowledge.show') }}

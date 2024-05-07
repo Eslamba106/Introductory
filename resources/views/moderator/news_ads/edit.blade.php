@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.moderator.dashboard')
 
 @section('title')
     {{ __('admin/news_ads.edit') }}
@@ -24,7 +24,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.news_ads.update') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('user.news_ads.update') }}" method="post" enctype="multipart/form-data">
             @method('put')
             @csrf
 

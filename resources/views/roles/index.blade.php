@@ -1,15 +1,15 @@
 @extends('layouts.admin.dashboard')
 
 @section('title')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/job.permission') }}
 @endsection
 
 @section('page_name')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/job.permission') }}
 @endsection
 
 @section('breadcrumb')
-    {{ __('admin/pages.pages') }}
+    {{ __('admin/job.permission') }}
 @endsection
 @section('content')
     {{-- <div class="container"> --}}
@@ -21,7 +21,7 @@
                             <div class="col-lg-12 margin-tb">
                                 <div class="pull-right">
                                     {{-- @can('اضافة صلاحية') --}}
-                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">اضافة</a>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">{{ __('admin/permission.create') }}</a>
                                     {{-- @endcan --}}
                                 </div>
                             </div>
@@ -35,8 +35,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>الاسم</th>
-                                    <th>العمليات</th>
+                                    <th>{{ __('admin/permission.name') }}</th>
+                                    <th>{{ __('admin/permission.operation') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,12 +50,12 @@
                                         <td>
                                             {{-- @can('عرض صلاحية') --}}
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('roles.show', $role->id) }}">عرض</a>
+                                                href="{{ route('roles.show', $role->id) }}">{{ __('admin/permission.edit') }}</a>
                                             {{-- @endcan --}}
 
                                             {{-- @can('تعديل صلاحية') --}}
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                                href="{{ route('roles.edit', $role->id) }}">{{ __('admin/permission.show') }}</a>
                                             {{-- @endcan --}}
 
                                             {{-- @if ($role->name !== 'owner') --}}

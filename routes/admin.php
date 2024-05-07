@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ArticalController;
 use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\ModeratorController;
+use App\Http\Controllers\Admin\EmploymentController;
 use App\Http\Controllers\Admin\ListSettingsController;
 use App\Http\Controllers\Admin\NewsCategoryController;
+use App\Http\Controllers\Admin\EmploymentModelController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\KnowledgeCategoryController;
 
@@ -25,9 +27,6 @@ use App\Http\Controllers\Admin\KnowledgeCategoryController;
 |
 */
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->middleware('auth.type:admin');
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('admin.dashboard')->middleware('auth.type:admin');
@@ -134,6 +133,26 @@ Route::get('/knowledge/center/show/{id}' , [KnowledgeController::class , 'show']
 Route::post('/knowledge/center/store' , [KnowledgeController::class , 'store'])->name('admin.knowledge_center.store');
 Route::put('/knowledge/center/update' , [KnowledgeController::class , 'update'])->name('admin.knowledge_center.update');
 Route::delete('/knowledge/center/delete' , [KnowledgeController::class , 'delete'])->name('admin.knowledge_center.delete');
+
+#############################################################################
+
+################################# Employment Section ########################
+
+Route::get('/job' , [EmploymentController::class , 'index'])->name('admin.job');
+Route::get('/job/edit/{id}' , [EmploymentController::class , 'edit'])->name('admin.job.edit');
+Route::post('/job/store' , [EmploymentController::class , 'store'])->name('admin.job.store');
+Route::put('/job/update/{id}' , [EmploymentController::class , 'update'])->name('admin.job.update');
+Route::delete('/job/delete' , [EmploymentController::class , 'delete'])->name('admin.job.delete');
+
+#############################################################################
+
+################################# Employment Model Section ########################
+
+Route::get('/job_model' , [EmploymentModelController::class , 'index'])->name('admin.job_model');
+Route::get('/job_model/edit/{id}' , [EmploymentModelController::class , 'edit'])->name('admin.job_model.edit');
+Route::post('/job_model/store' , [EmploymentModelController::class , 'store'])->name('admin.job_model.store');
+Route::put('/job_model/update/{id}' , [EmploymentModelController::class , 'update'])->name('admin_model.job.update');
+Route::delete('/job_model/delete' , [EmploymentModelController::class , 'delete'])->name('admin.job_model.delete');
 
 #############################################################################
 

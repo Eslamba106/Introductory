@@ -58,7 +58,7 @@ class KnowledgeController extends Controller
             "slug" => $slug,
             'tags' => $request->tags,
         ]);
-        return  redirect()->route('moderator.knowledge_center.index');
+        return  redirect()->route('user.knowledge_center.index');
     }
 
     public function edit($id)
@@ -106,13 +106,13 @@ class KnowledgeController extends Controller
                 Storage::disk('public')->delete($old_image);
             }
         
-        return  redirect()->route('moderator.knowledge_center.index');
+        return  redirect()->route('user.knowledge_center.index');
     }
     public function delete(Request $request){
         $knowledge = Knowledge::findOrFail($request->id);
         $knowledge->delete();
         Storage::disk('public')->delete($knowledge->image);
-        return  redirect()->route('moderator.knowledge_center.index');
+        return  redirect()->route('user.knowledge_center.index');
     }
 
     protected function uploadImage(Request $request)

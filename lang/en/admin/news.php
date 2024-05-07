@@ -10,5 +10,5 @@ return [
     "main" => "Main Category",
     "delete_category" => "Delete Category",
     "edit_category" => "Edit Category",
-
+    'no_news'   => 'There is no News'
 ]; 

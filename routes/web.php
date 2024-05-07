@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\front\Homecontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,6 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang'); 
-
+Route::get('/'  , [Homecontroller::class , 'index'])->name('home');
 require __DIR__.'/admin.php';
 require __DIR__.'/moderator.php';

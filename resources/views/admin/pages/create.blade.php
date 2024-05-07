@@ -21,7 +21,7 @@
 
         <div class="form-group col-md-12">
             <label>{{ __('admin/pages.content') }}</label>
-            <textarea name="content" class="form-control" id="editor" cols="50" rows="10"></textarea>
+            <textarea  name="content" class="form-control" id="editor" cols="50" rows="10"></textarea>
         </div>
 
         <div class="form-group col-md-12">
@@ -39,6 +39,9 @@
 @section('js')
 <script src="{{ asset('js/dist/tagify.js') }}"></script>
 <script src="{{ asset('js/dist/tagify.polyfills.min.js') }}"></script>
+{{-- <script>
+    CKEDITOR.replace('editor');
+</script> --}}
 <script>
     var inputElm = document.querySelector('[name=tags]');
     tagify = new Tagify (inputElm);
@@ -60,15 +63,4 @@
 </script>
 
 @endsection 
-{{-- @section('js')
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
-@endsection --}}
+

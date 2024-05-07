@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.moderator.dashboard')
 
 @section('title')
     {{ __('admin/knowledge.knowledge') }}
@@ -12,13 +12,13 @@
     {{ __('admin/knowledge.knowledge') }}
 @endsection
 @section('content')
-
-
-<div class="m-2">
-    <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-toggle="modal"
-        data-target="#create_artical">{{ __('admin/knowledge.add_knowledge') }}</a>
-</div>
-
+    
+    @can('create')
+    <div class="m-2">
+        <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-toggle="modal"
+            data-target="#create_artical">{{ __('admin/knowledge.add_knowledge') }}</a>
+    </div>
+    @endcan
     <!-- Start Search knowledge !-->
     <form action="{{ URL::current() }}" method="get" class="d-flex justify-content-between mb-4">
         {{-- <x-form.input name="name" placeholder="Name" class="mx-2" :value="request('name')"/> --}}
@@ -26,8 +26,7 @@
         <select name="department" class="form-control mx-2">
             <option value="">All</option>
             @foreach ($departments as $item)
-                
-            <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
             @endforeach
         </select>
         <button class="btn btn-dark mx-2">Filter</button>
@@ -36,7 +35,7 @@
 
 
     <!-- Start Create knowledge !-->
-
+    @can('create')
     <div class="modal fade" id="create_artical" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -46,7 +45,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.knowledge_center.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.knowledge_center.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
@@ -88,10 +87,13 @@
             </div>
         </div>
     </div>
+    @endcan
     <!-- End Create knowledge !-->
 
 
     <!-- Start Delete knowledge !-->
+    @can('delete')
+
     <div class="modal fade" id="delete_explained" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -101,7 +103,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <form action="{{ route('admin.knowledge_center.delete') }}" method="post">
+                    <form action="{{ route('user.knowledge_center.delete') }}" method="post">
                         @method('delete')
                         @csrf
 
@@ -120,6 +122,8 @@
             </div>
         </div>
     </div>
+    @endcan
+
     <!-- End Delete knowledge !-->
 
 
@@ -140,21 +144,26 @@
                     <td>{{ $item->title }}</td>
                     <?php $writer = App\Models\Admin::where('id', $item->writer)->first(); ?>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
+                    @can('edit')
 
                     <td>
-                        <a href="{{ route('admin.knowledge_center.edit', $item->id) }}"
+                        <a href="{{ route('user.knowledge_center.edit', $item->id) }}"
                             class="btn btn-sm btn-outline-success">{{ __('admin/knowledge.edit') }}</a>
                     </td>
+                    @endcan
 
                     <td>
-                        <a href="{{ route('admin.knowledge_center.show', $item->id) }}"
+                        <a href="{{ route('user.knowledge_center.show', $item->id) }}"
                             class="btn btn-sm btn-outline-info">{{ __('admin/knowledge.show') }}</a>
                     </td>
+                    @can('delete')
                     <td>
                         <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                             data-delete_explained_id="{{ $item->id }}"
                             data-target="#delete_explained">{{ __('admin/knowledge.delete') }}</a>
                     </td>
+                    @endcan
+
 
                 </tr>
             @empty

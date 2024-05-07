@@ -14,7 +14,6 @@
 @endsection
 @section('content')
     {!! $page->content !!}
-
     <hr><hr>
     @foreach ($tags as $item)
        {{ $item->value }} <br> 

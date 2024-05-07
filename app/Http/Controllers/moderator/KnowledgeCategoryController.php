@@ -22,7 +22,7 @@ class KnowledgeCategoryController extends Controller
         KnowledgeCategory::create([
             "name" => $request->name,
         ]);
-        return redirect()->route('moderator.knowledge_categories.index');
+        return redirect()->route('user.knowledge_categories.index');
     }
 
     public function update(Request $request){
@@ -32,7 +32,7 @@ class KnowledgeCategoryController extends Controller
         $knowledge_categories->update([
             "name" => $request->name,
         ]);
-        return redirect()->route('moderator.knowledge_categories.index');
+        return redirect()->route('user.knowledge_categories.index');
     }
     public function delete(Request $request){
 
@@ -40,7 +40,7 @@ class KnowledgeCategoryController extends Controller
         $knowledge_categories = KnowledgeCategory::findOrFail($request->id);
         $knowledge_categories->delete();
 
-        return redirect()->route('moderator.knowledge_categories.index')->with('delete_department');
+        return redirect()->route('user.knowledge_categories.index')->with('delete_department');
     }
 }
 
