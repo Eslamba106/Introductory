@@ -12,7 +12,7 @@ class Artical extends Model
     protected $fillable = [ 'slug', 'title', 'writer', 'writer_type', 'content', 'image', 'tags', 'status' ,'blog_id'];
 
     public function department(){
-        $this->belongsTo(Blog::class);
+        $this->belongsTo(Blog::class ,  'blog_id' , 'id');
     }
     public function getImageUrlAttribute()
     {

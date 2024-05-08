@@ -28,6 +28,6 @@ return [
     "show" => "Show",
     "writer" => "Writer",
     "create_at" => "Created At",
-
-
+    "description" => "There Is",
+    "artical_desc" => "Every Section Contains Articals"
 ];

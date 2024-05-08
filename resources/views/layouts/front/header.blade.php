@@ -431,28 +431,30 @@
                                     <li class="mega-menu">
                                         <div class="">
                                             <ul>
-                                            
+
                                                 <li class="slide">
-                                                    <a href="{{ route('lang' , 'ar') }}" class="dropdown-item">
+                                                    <a href="{{ route('lang', 'ar') }}" class="dropdown-item">
                                                         {{ __('admin/general.arabic') }}
                                                         <span class="float-right text-muted text-sm">
-                                                            <img src="{{ URL::asset('images/flags/SA.png') }}" alt="">
-                                        
+                                                            <img src="{{ URL::asset('images/flags/SA.png') }}"
+                                                                alt="">
+
                                                         </span>
                                                     </a>
                                                 </li>
                                                 <li class="slide">
-                                                    <a href="{{ route('lang' , 'en') }}" class="dropdown-item">
+                                                    <a href="{{ route('lang', 'en') }}" class="dropdown-item">
                                                         {{ __('admin/general.english') }}
                                                         <span class="float-right text-muted text-sm">
-                                                        <img src="{{ URL::asset('images/flags/US.png') }}" alt=""> 
-                                        
+                                                            <img src="{{ URL::asset('images/flags/US.png') }}"
+                                                                alt="">
+
                                                         </span>
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        
+
                                     </li>
                                 </ul>
                             </li>
@@ -463,11 +465,14 @@
 
                         </ul>
                         <div class="d-xl-flex d-lg-none d-grid gap-2 text-center ">
-                            
 
-                            {{-- <a href="register.html" class="btn btn-secondary min-w-fit-content">Register</a> --}}
-                            <a href="{{ route('moderator.login-page') }}"
-                                class="btn btn-outline-light login-btn min-w-fit-content">{{ __('login.login') }}</a>
+                            @if (auth()->user())
+                                <a href="{{ route('logout.admin') }}"
+                                    class="btn btn-secondary min-w-fit-content">{{ __('main.logout') }}</a>
+                            @else
+                                <a href="{{ route('moderator.login-page') }}"
+                                    class="btn btn-outline-light login-btn min-w-fit-content">{{ __('login.login') }}</a>
+                            @endif
                         </div>
 
                     </nav>

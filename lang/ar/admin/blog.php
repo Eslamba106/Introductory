@@ -28,5 +28,6 @@ return [
     "tags" => "التاج" ,
     "writer" => "الكاتب",
     "create_at" => "اضيفت في",
-
+    "description" =>  "يوجد في المدونة",
+    "artical_desc" => "كل قسم يحتوي علي مقالات"
 ];
