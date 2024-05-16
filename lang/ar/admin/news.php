@@ -11,4 +11,6 @@ return [
     "delete_category" => "حذف التصنيف",
     "edit_category" => "تعديل التصنيف",
     'no_news'   => "لا يوجد اخبار",
+    'last' => "اخر",
+    'category_details' => 'تصنيفات الاخبار'
 ]; 

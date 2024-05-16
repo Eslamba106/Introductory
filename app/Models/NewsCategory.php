@@ -11,8 +11,8 @@ class NewsCategory extends Model
 
     protected $fillable = ['name' , 'parent_id'];
 
-    public function product(){
-        return $this->hasMany(News::class , 'category_id');
+    public function news(){
+        return $this->hasMany(News::class , 'news_category_id');
     }
     public function parent(){
         return $this->belongsTo(NewsCategory::class , 'parent_id');

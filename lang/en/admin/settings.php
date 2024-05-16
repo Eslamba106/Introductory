@@ -13,6 +13,7 @@ return [
     "contact" => "Contact Us" ,
     "edit" => "Edit Settings",
     "update" => "Update",
-    "info" => "Web Settings"
+    "info" => "Web Settings",
+    'looking' => "Looking For a ",
 
 ];

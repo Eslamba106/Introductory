@@ -31,13 +31,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $general_settings = GeneralSetting::first();
-        $blog_departments = Blog::take(3)->get();
-        $blog_artical = Artical::take(3)->get();
+        $blog_departments = Blog::take(4)->get();
+        $blog_artical = Artical::take(6)->get();
         $news_category = NewsCategory::take(3)->get();
         $news = News::take(3)->get();
         $knowledge_category = KnowledgeCategory::take(3)->get();
         $knowledge_center   = Knowledge::take(3)->get();
-        $jobs = Employment::take(3)->get();
+        $jobs = Employment::take(6)->get();
         $list_settings = ListSetting::first();
         $general_settings = GeneralSetting::first();
         if ($general_settings) {

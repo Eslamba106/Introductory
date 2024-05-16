@@ -14,10 +14,14 @@ class News extends Model
     ];
 
     public function newsCategory(){
-        $this->belongsTo(NewsCategory::class );
+        return $this->belongsTo(NewsCategory::class );
+    }
+    public function writerName(){
+        return $this->belongsTo(User::class , 'writer');
     }
     public function getImageUrlAttribute()
     {
         return asset('storage/' . $this->image);
     }
+
 }

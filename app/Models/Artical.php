@@ -12,10 +12,13 @@ class Artical extends Model
     protected $fillable = [ 'slug', 'title', 'writer', 'writer_type', 'content', 'image', 'tags', 'status' ,'blog_id'];
 
     public function department(){
-        $this->belongsTo(Blog::class ,  'blog_id' , 'id');
+        return $this->belongsTo(Blog::class ,  'blog_id' );
     }
     public function getImageUrlAttribute()
     {
         return asset('storage/' . $this->image);
+    }
+    public function articalWriter(){
+        return $this->belongsTo(User::class , 'writer');
     }
 }

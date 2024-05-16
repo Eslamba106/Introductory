@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\front\Homecontroller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\front\Blogcontroller;
+use App\Http\Controllers\front\Homecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang'); 
-Route::get('/'  , [Homecontroller::class , 'index'])->name('home');
 require __DIR__.'/admin.php';
+Route::get('/'  , [Homecontroller::class , 'index'])->name('home');
+Route::get('/blog'  , [Blogcontroller::class , 'index'])->name('blog');
 require __DIR__.'/moderator.php';

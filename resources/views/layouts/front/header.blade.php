@@ -43,7 +43,7 @@
 
                             <!-- Start::slide -->
                             <li class="slide has-sub">
-                                <a href="javascript:void(0);" class="side-menu__item">
+                                <a href="{{ route('blog') }}" class="side-menu__item">
                                     <span class="side-menu__label">{{ __('admin/settings.blog') }}</span>
                                     <i class="fe fe-chevron-down side-menu__angle"></i>
                                 </a>

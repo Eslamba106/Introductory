@@ -29,5 +29,6 @@ return [
     "writer" => "Writer",
     "create_at" => "Created At",
     "description" => "There Is",
-    "artical_desc" => "Every Section Contains Articals"
+    "artical_desc" => "Every Section Contains Articals",
+    'last'   => "Recent Posts",
 ];

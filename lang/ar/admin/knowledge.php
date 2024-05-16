@@ -14,4 +14,6 @@ return [
     "department"    => "التصنيف",
     "add_knowledge" => "اضافة الشرح",
     "no_explained"  => "لا يوجد شرح",
+    'category_details' => "تصنيفات مركز المعرفة",
+    
 ];

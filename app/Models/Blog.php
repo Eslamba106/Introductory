@@ -12,6 +12,6 @@ class Blog extends Model
     protected $fillable = ['name'];
 
     public function artical(){
-        $this->hasMany(Artical::class);
+        return $this->hasMany(Artical::class);
     }
 }

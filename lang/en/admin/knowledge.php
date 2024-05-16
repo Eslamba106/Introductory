@@ -14,6 +14,7 @@ return [
     "department"    => "Category",
     "add_knowledge" => "Add Explained",
     "no_explained"  => "There is no explained",
+    'category_details' => "Knowledge Center Category Details",
     
 
 ];

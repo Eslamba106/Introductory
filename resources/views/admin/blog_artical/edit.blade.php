@@ -24,7 +24,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('admin.blog_artical.update' , $artical->id) }}" method="post">
+        <form action="{{ route('admin.blog_artical.update' , $artical->id) }}" method="post" enctype="multipart/form-data">
             @method('put')
             @csrf
 

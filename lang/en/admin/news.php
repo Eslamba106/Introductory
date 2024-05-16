@@ -10,5 +10,7 @@ return [
     "main" => "Main Category",
     "delete_category" => "Delete Category",
     "edit_category" => "Edit Category",
-    'no_news'   => 'There is no News'
+    'no_news'   => 'There is no News',
+    'last' => "Our Latest ",
+    'category_details' => "News Category Details",
 ]; 
