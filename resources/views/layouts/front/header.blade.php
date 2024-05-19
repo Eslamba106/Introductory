@@ -125,7 +125,7 @@
 
                             <!-- Start::slide -->
                             <li class="slide has-sub">
-                                <a href="javascript:void(0);" class="side-menu__item">
+                                <a href="{{ route('news') }}" class="side-menu__item">
                                     <span class="side-menu__label">{{ __('admin/news.news') }}</span>
                                     <i class="fe fe-chevron-down side-menu__angle"></i>
 
@@ -214,7 +214,7 @@
 
                             <!-- Start::slide -->
                             <li class="slide has-sub">
-                                <a href="javascript:void(0);" class="side-menu__item">
+                                <a href="{{ route('knowledge_center') }}" class="side-menu__item">
                                     <span class="side-menu__label">{{ __('admin/knowledge.knowledge') }}</span>
                                     <i class="fe fe-chevron-down side-menu__angle"></i>
 
@@ -298,7 +298,7 @@
 
                             <!-- Start::slide -->
                             <li class="slide has-sub">
-                                <a href="javascript:void(0);" class="side-menu__item">
+                                <a href="{{ route('jobs') }}" class="side-menu__item">
                                     <span class="side-menu__label">{{ __('admin/job.jobs') }}</span>
                                     <i class="fe fe-chevron-down side-menu__angle"></i>
                                 </a>

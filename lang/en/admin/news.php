@@ -12,5 +12,6 @@ return [
     "edit_category" => "Edit Category",
     'no_news'   => 'There is no News',
     'last' => "Our Latest ",
+    'last_news' => 'Last News',
     'category_details' => "News Category Details",
 ]; 

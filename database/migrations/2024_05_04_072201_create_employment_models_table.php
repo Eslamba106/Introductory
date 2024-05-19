@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('employment_models', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('app_code');
             $table->string('phone');
             $table->string('email');
-            $table->string('attachments');
+            $table->string('attachments')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

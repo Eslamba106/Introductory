@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\front\Blogcontroller;
-use App\Http\Controllers\front\Homecontroller;
+use App\Http\Controllers\front\BlogController;
+use App\Http\Controllers\front\HomeController;
+use App\Http\Controllers\front\JobsController;
+use App\Http\Controllers\front\NewsAdsController;
+use App\Http\Controllers\front\KnowledgeCenterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +26,11 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('lang'); 
 require __DIR__.'/admin.php';
-Route::get('/'  , [Homecontroller::class , 'index'])->name('home');
-Route::get('/blog'  , [Blogcontroller::class , 'index'])->name('blog');
+Route::get('/'  , [HomeController::class , 'index'])->name('home');
+Route::get('/blog'  , [BlogController::class , 'index'])->name('blog');
+Route::get('/news'  , [NewsAdsController::class , 'index'])->name('news');
+Route::get('/knowledge_center'  , [KnowledgeCenterController::class , 'index'])->name('knowledge_center');
+Route::get('/jobs'  , [JobsController::class , 'index'])->name('jobs');
+Route::get('/application/{slug}'  , [JobsController::class , 'application'])->name('application');
+Route::post('/application'  , [JobsController::class , 'store'])->name('store-application');
 require __DIR__.'/moderator.php';

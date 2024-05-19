@@ -7,7 +7,7 @@ use App\Models\Blog;
 use App\Models\Artical;
 use App\Http\Controllers\Controller;
 
-class Homecontroller extends Controller
+class HomeController extends Controller
 {
     public function index()
     {

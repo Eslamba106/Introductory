@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('employments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('description');
             $table->string('image')->nullable();
-            $table->text('feature');
+            $table->json('features')->nullable();
             $table->string('category');
+            $table->integer('count')->default(1);
             $table->enum('status' , ['active' , 'archive']);
             $table->timestamps();
         });

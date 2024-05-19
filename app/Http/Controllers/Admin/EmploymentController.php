@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Employment;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ class EmploymentController extends Controller
         $request->validate([
             'title'             => "required|string|max:255|min:3",
             'description'       => "required",
-            "feature"           => "required",
+            "count"           => "required|integer",
             "category"           => "required",
             "status"           => "required",
         ]);
@@ -31,13 +32,15 @@ class EmploymentController extends Controller
 
             $path = $this->uploadImage($request);
         }
-
+        $slug = Str::slug($request->title.rand(1,1000) , '_');
         $job = Employment::create([
             'title'             => $request->title,
+            'slug'             => $slug,
             'description'       => $request->description,
-            "feature"           => $request->feature,
+            "features"           => $request->features,
             "category"          => $request->category,
             "status"            => $request->status,
+            "count"            => $request->count,
             "image"            => $path ?? null,
         ]);
         return redirect()->route('admin.job');
@@ -54,11 +57,12 @@ class EmploymentController extends Controller
         $request->validate([
             'title'             => "required|string|max:255|min:3",
             'description'       => "required",
-            "feature"           => "required",
-            "category"           => "required",
-            "status"           => "required",
+            "count"             => "required|integer",
+            "category"          => "required",
+            "status"            => "required",
         ]);
         $job = Employment::findOrFail($id);
+        $slug = Str::slug($request->title.rand(1,1000) , '_');
 
         $new_image = $this->uploadImage($request);
         $old_image = $job->image;
@@ -70,10 +74,12 @@ class EmploymentController extends Controller
 
         $job->update([
             'title'             => $request->title,
+            'slug'             => $slug,
             'description'       => $request->description,
-            "feature"           => $request->feature,
+            "features"           => $request->features,
             "category"          => $request->category,
             "status"            => $request->status,
+            "count"            => $request->count,
             "image"            => $image ?? null,
         ]);
         if ($old_image && $new_image) {

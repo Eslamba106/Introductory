@@ -9,5 +9,11 @@ class Employment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'image', 'feature', 'category', 'status'] ;
+    protected $fillable = ['title', 'description' , 'slug' , 'image', 'features', 'count' , 'category', 'status'] ;
+
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->image);
+    }
+
 }

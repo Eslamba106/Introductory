@@ -10,6 +10,7 @@ return [
     'delete'        => "Delete Job",
     'edit'          => "Edit Job",
     'no_job'        => "There is no job",
-    'some'          => "Some Avilable Jobs"
-
+    'some'          => "Some Avilable Jobs",
+    'count'         => "Count",
+    'app'           => 'Add Application',
 ];

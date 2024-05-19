@@ -12,5 +12,6 @@ return [
     "edit_category" => "تعديل التصنيف",
     'no_news'   => "لا يوجد اخبار",
     'last' => "اخر",
+    'last_news' => "اخر الاخبار",
     'category_details' => 'تصنيفات الاخبار'
 ]; 

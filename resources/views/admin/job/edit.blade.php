@@ -50,8 +50,12 @@
                     <input class="form-control" name="category" value="{{ old('category', $job->category) }}">
                 </div>
                 <div class="form-group">
+                    <label for="">{{ __('admin/job.count') }}</label>
+                    <input class="form-control" type="text" name="count" value="{{ old('count', $job->count) }}">
+                </div>
+                <div class="form-group">
                     <label for="">{{ __('admin/job.feature') }}</label>
-                    <input class="form-control" type="text" name="feature" value="{{ old('title', $job->feature) }}">
+                    <input class="form-control" type="text" name="features" value="{{ old('feature', $job->features) }}">
                 </div>
                 <div class="form-group">
                     <label for="">{{ __('admin/blog.image') }}</label>
@@ -83,7 +87,7 @@
 <script src="{{ asset('js/dist/tagify.js') }}"></script>
 <script src="{{ asset('js/dist/tagify.polyfills.min.js') }}"></script>
 <script>
-    var inputElm = document.querySelector('[name=tags]');
+    var inputElm = document.querySelector('[name=features]');
     tagify = new Tagify (inputElm);
 
     ClassicEditor

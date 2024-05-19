@@ -65,7 +65,6 @@
                                                     <h5 class="flex-grow-1 mb-0 ms-3">{{ $item->title }}</h5>
                                                 </div>
                                                 <p class="mb-0">{{ $item->content }}</p>
-                                                {{-- <?php $userArtical = App\Models\User::where('id', $item->writer)->first(); ?> --}}
                                                 <div class="heading-description">{{ $item->articalWriter->name }}</div>
                                             </div>
                                         </div>

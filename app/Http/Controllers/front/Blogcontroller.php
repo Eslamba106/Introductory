@@ -7,7 +7,7 @@ use App\Models\Artical;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Blogcontroller extends Controller
+class BlogController extends Controller
 {
     public function index(){
         $categories = Blog::paginate(6);

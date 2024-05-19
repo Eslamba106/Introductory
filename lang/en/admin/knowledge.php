@@ -11,10 +11,13 @@ return [
     "tags"          => "Tags",
     "image"         => "Image",
     "created_at"    => "Created At",
-    "department"    => "Category",
     "add_knowledge" => "Add Explained",
+    "department"    => "Category",
+    "departments"    => "Categories",
     "no_explained"  => "There is no explained",
     'category_details' => "Knowledge Center Category Details",
+    'last'          => "Last Explaines",
+    
     
 
 ];
