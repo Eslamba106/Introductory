@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         @empty
-                            
+                            {{ __('admin/job.no_job') }}
                         @endforelse
                         
               

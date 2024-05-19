@@ -4,8 +4,10 @@ return [
 
     "page_create" => "Create Page",
     "pages" => "Pages",
-    "title" => "Title",
-    "content" => "Content",
+    "title_ar" => "Title By Arabic",
+    "title_en" => "Title By English",
+    "content_ar" => "Content By Arabic",
+    "content_en" => 'Content By English',
     "tags" => "Tags",
     "created_at" => "Created At" ,
     "edit" => "Edit",

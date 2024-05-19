@@ -23,16 +23,20 @@ class PageController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title_en' => 'required',
+            'title_ar' => 'required',
+            'content_ar' => 'required',
+            'content_en' => 'required',
             'tags' => 'required',
         ]);
 
-        $slug = Str::slug($request->title.rand(1,1000) , '_');
+        $slug = Str::slug($request->title_en.rand(1,1000) , '_');
         $page = Page::create([
             'slug' => $slug,
-            'title' => $request->title,
-            'content' => $request->content,
+            'title_ar' => $request->title_ar,
+            'title_en' => $request->title_en,
+            'content_ar' => $request->content_ar,
+            'content_en' => $request->content_en,
             'tags' => $request->tags,
         ]);
         return redirect()->route('admin.page.index');

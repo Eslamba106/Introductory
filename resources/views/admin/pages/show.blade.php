@@ -5,18 +5,21 @@
 @endsection
 
 @section('page_name')
-{{ $page->title }}
-
+    {{ $page->title }}
 @endsection
 
 @section('breadcrumb')
     {{ __('admin/pages.pages') }}
 @endsection
 @section('content')
-    {!! $page->content !!}
-    <hr><hr>
+    @if (session()->has('locale') && session()->get('locale') == 'ar')
+        {!! $page->content_ar !!}
+    @else
+        {!! $page->content_en !!}
+    @endif
+    <hr>
+    <hr>
     @foreach ($tags as $item)
-       {{ $item->value }} <br> 
+        {{ $item->value }} <br>
     @endforeach
-    
 @endsection

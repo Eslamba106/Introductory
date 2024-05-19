@@ -27,7 +27,12 @@
             {{-- @if ($products->count()) --}}
             @forelse ($pages as $page)
                 <tr>
-                    <td>{{ $page->title }}</td>
+                    @if (session()->has('locale') && session()->get('locale') == 'ar')
+                    <td>{{ $page->title_ar }}</td>
+                    @else
+                    <td>{{ $page->title_en }}</td>
+                    @endif
+                    
                     <td>{{ $page->created_at->shortAbsoluteDiffForHumans() }}</td>
 
                     <td>

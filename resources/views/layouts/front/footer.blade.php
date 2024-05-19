@@ -24,16 +24,16 @@
                                 </li>
                             </ul>
                             <div class="footer-btn-list d-flex align-items-center mt-4">
-                                <a href="{{ $list_settings->facebook }}"
+                                <a href="{{ $list_settings->facebook ?? '#' }}"
                                     class="footer-btn btn btn-icon btn-info-dark rounded-circle me-2"><i
                                         class="bi bi-facebook"></i></a>
-                                <a href="{{ $list_settings->linked_in }}"
+                                <a href="{{ $list_settings->linked_in ?? '#' }}"
                                     class="footer-btn btn btn-icon btn-info-dark rounded-circle me-2"><i
                                         class="bi bi-linkedin"></i></a>
-                                <a href="{{ $list_settings->instagram }}"
+                                <a href="{{ $list_settings->instagram ?? '#' }}"
                                     class="footer-btn btn btn-icon btn-info-dark rounded-circle me-2"><i
                                         class="bi bi-instagram"></i></a>
-                                <a href="{{ $list_settings->x }}"
+                                <a href="{{ $list_settings->x ?? '#' }}"
                                     class="footer-btn btn btn-icon btn-info-dark rounded-circle"><i
                                         class="bi bi-twitter"></i></a>
                             </div>

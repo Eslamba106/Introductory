@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="text-lg-end text-center mt-4 mt-lg-0">
-                            <img src="{{ $general_settings->image_url }}" class="img-fluid" alt="img" height="300"
+                            <img src="{{ $general_settings->image_url ?? null }}" class="img-fluid" alt="img" height="300"
                                 width="300">
                         </div>
                     </div>
