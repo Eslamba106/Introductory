@@ -43,9 +43,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth.type:
 ################################# Blog Department  #########################
 
 Route::get('/blog/department/index' , [BlogController::class , 'index'])->name('user.blog_department.index');
-Route::post('/blog/department/store' , [BlogController::class , 'store'])->name('user.blog_department.store');
-Route::put('/blog/department/update' , [BlogController::class , 'update'])->name('user.blog_department.update');
-Route::delete('/blog/department/delete' , [BlogController::class , 'delete'])->name('user.blog_department.delete');
+// Route::post('/blog/department/store' , [BlogController::class , 'store'])->name('user.blog_department.store');
+// Route::put('/blog/department/update' , [BlogController::class , 'update'])->name('user.blog_department.update');
+// Route::delete('/blog/department/delete' , [BlogController::class , 'delete'])->name('user.blog_department.delete');
 
 ################################ Blog Department ###########################
 
@@ -64,9 +64,9 @@ Route::delete('/blog/artical/delete' , [ArticalController::class ,"delete"])->na
 ################################# News Categories  #########################
 
 Route::get('/news/categories/index' , [NewsCategoryController::class , 'index'])->name('user.news_categories.index');
-Route::post('/news/categories/store' , [NewsCategoryController::class , 'store'])->name('user.news_categories.store');
-Route::put('/news/categories/update' , [NewsCategoryController::class , 'update'])->name('user.news_categories.update');
-Route::delete('/news/categories/delete' , [NewsCategoryController::class , 'delete'])->name('user.news_categories.delete');
+// Route::post('/news/categories/store' , [NewsCategoryController::class , 'store'])->name('user.news_categories.store');
+// Route::put('/news/categories/update' , [NewsCategoryController::class , 'update'])->name('user.news_categories.update');
+// Route::delete('/news/categories/delete' , [NewsCategoryController::class , 'delete'])->name('user.news_categories.delete');
 
 ################################ News Categories ###########################
 
@@ -83,9 +83,9 @@ Route::delete('/news/news_ads/delete' , [NewsController::class , 'delete'])->nam
 
 
 Route::get('/knowledge/categories/index' , [KnowledgeCategoryController::class , 'index'])->name('user.knowledge_categories.index');
-Route::post('/knowledge/categories/store' , [KnowledgeCategoryController::class , 'store'])->name('user.knowledge_categories.store');
-Route::put('/knowledge/categories/update' , [KnowledgeCategoryController::class , 'update'])->name('user.knowledge_categories.update');
-Route::delete('/knowledge/categories/delete' , [KnowledgeCategoryController::class , 'delete'])->name('user.knowledge_categories.delete');
+// Route::post('/knowledge/categories/store' , [KnowledgeCategoryController::class , 'store'])->name('user.knowledge_categories.store');
+// Route::put('/knowledge/categories/update' , [KnowledgeCategoryController::class , 'update'])->name('user.knowledge_categories.update');
+// Route::delete('/knowledge/categories/delete' , [KnowledgeCategoryController::class , 'delete'])->name('user.knowledge_categories.delete');
 
 #############################################################################
 

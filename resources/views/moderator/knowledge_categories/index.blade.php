@@ -13,13 +13,13 @@
 @endsection
 @section('content')
     <!-- Start Create Department !-->
-    @can('create')
+    {{-- @can('create')
         <div class="m-2">
             <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-category_id="" data-toggle="modal"
                 data-target="#category_id">{{ __('admin/blog.add_department') }}</a>
         </div>
-    @endcan
-    @can('create')
+    @endcan --}}
+    {{-- @can('create')
         <div class="modal fade" id="category_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -47,13 +47,13 @@
                 </div>
             </div>
         </div>
-    @endcan
+    @endcan --}}
 
     <!-- End Create Department !-->
 
 
     <!-- Start Edit Department !-->
-    @can('edit')
+    {{-- @can('edit')
         <div class="modal fade" id="edit_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -83,12 +83,12 @@
                 </div>
             </div>
         </div>
-    @endcan
+    @endcan --}}
 
     <!-- End Edit Department !-->
 
     <!-- Start Delete Department !-->
-    @can('delete')
+    {{-- @can('delete')
         <div class="modal fade" id="delete_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -117,7 +117,7 @@
                 </div>
             </div>
         </div>
-    @endcan
+    @endcan --}}
     <!-- End Delete Department !-->
 
 
@@ -138,20 +138,20 @@
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
-                    @can('edit')
+                    {{-- @can('edit')
                         <td>
                             <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal"
                                 data-category_id="{{ $item->id }}"
                                 data-target="#edit_category">{{ __('admin/blog.edit_department') }}</a>
                         </td>
-                    @endcan
-                    @can('delete')
+                    @endcan --}}
+                    {{-- @can('delete')
                         <td>
                             <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                                 data-category_id="{{ $item->id }}"
                                 data-target="#delete_category">{{ __('admin/blog.delete_department') }}</a>
                         </td>
-                    @endcan
+                    @endcan --}}
 
                 </tr>
             @empty
@@ -167,7 +167,7 @@
     {{ $knowledge_categories->withQueryString()->appends(['search' => 1])->links() }}
 @endsection
 @section('js')
-    <script>
+    {{-- <script>
         $('#edit_category').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var category_id = button.data('category_id')
@@ -182,5 +182,5 @@
             var modal = $(this)
             modal.find('.modal-body #delete_category').val(category_id);
         })
-    </script>
+    </script> --}}
 @endsection

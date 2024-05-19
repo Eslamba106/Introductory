@@ -136,6 +136,9 @@
                         <a href="{{ route('admin.job.edit' , $item->id) }}" class="btn btn-sm btn-outline-success">{{ __('admin/job.edit') }}</a>
                     </td>
                     <td>
+                        <a href="{{ route('admin.job.show' , $item->id) }}" class="btn btn-sm btn-outline-info">{{ __('admin/job.show') }}</a>
+                    </td>
+                    <td>
                         <a href="" class="btn btn-sm btn-outline-danger" data-toggle="modal"
                             data-news_id="{{ $item->id }}"
                             data-target="#delete_news">{{ __('admin/job.delete') }}</a>

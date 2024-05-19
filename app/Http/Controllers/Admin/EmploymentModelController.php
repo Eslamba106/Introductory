@@ -15,6 +15,7 @@ class EmploymentModelController extends Controller
     }
     public function index()
     {
+        // $jobs
         return view('admin.employment.index');
     }
     public function store(Request $request)

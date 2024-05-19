@@ -33,4 +33,6 @@ Route::get('/knowledge_center'  , [KnowledgeCenterController::class , 'index'])-
 Route::get('/jobs'  , [JobsController::class , 'index'])->name('jobs');
 Route::get('/application/{slug}'  , [JobsController::class , 'application'])->name('application');
 Route::post('/application'  , [JobsController::class , 'store'])->name('store-application');
+// Route::get('/verify_email/{code}'  , [JobsController::class , 'verifyEmailView'])->name('verify_code_view');
+Route::post('/verify_email'  , [JobsController::class , 'verifyEmail'])->name('verify_code');
 require __DIR__.'/moderator.php';

@@ -21,7 +21,11 @@
         </div>
 
     </section>
+
     <section class="section">
+        <x-alert type="success" />
+        <x-alert type="info" />
+        <x-alert type="fail" />
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">

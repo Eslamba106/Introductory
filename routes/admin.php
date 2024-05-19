@@ -140,6 +140,7 @@ Route::delete('/knowledge/center/delete' , [KnowledgeController::class , 'delete
 
 Route::get('/job' , [EmploymentController::class , 'index'])->name('admin.job');
 Route::get('/job/edit/{id}' , [EmploymentController::class , 'edit'])->name('admin.job.edit');
+Route::get('/job/show/{id}' , [EmploymentController::class , 'show'])->name('admin.job.show');
 Route::post('/job/store' , [EmploymentController::class , 'store'])->name('admin.job.store');
 Route::put('/job/update/{id}' , [EmploymentController::class , 'update'])->name('admin.job.update');
 Route::delete('/job/delete' , [EmploymentController::class , 'delete'])->name('admin.job.delete');

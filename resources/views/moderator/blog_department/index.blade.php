@@ -37,7 +37,7 @@
 </script> --}}
 {{-- @endif --}}
     <!-- Start Create Department !-->
-    @can('create')
+    {{-- @can('create')
         
     
     <div class="m-2">
@@ -45,8 +45,8 @@
             data-target="#Transfer_invoice">{{ __('admin/blog.add_department') }}</a>
     </div>
     @endcan
-    @can('create')
-    <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    @can('create') --}}
+    {{-- <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -73,12 +73,12 @@
             </div>
         </div>
     </div>
-    @endcan
+    @endcan --}}
     <!-- End Create Department !-->
 
 
     <!-- Start Edit Department !-->
-    @can('edit')
+    {{-- @can('edit')
         
     <div class="modal fade" id="editdepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -110,11 +110,11 @@
         </div>
     </div>
     
-@endcan
+@endcan --}}
     <!-- End Edit Department !-->
 
     <!-- Start Delete Department !-->
-    @can('delete')
+    {{-- @can('delete')
         
     <div class="modal fade" id="delete_department" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -144,7 +144,7 @@
             </div>
         </div>
     </div>
-    @endcan
+    @endcan --}}
 
     <!-- End Delete Department !-->
 
@@ -166,7 +166,7 @@
                 <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->created_at->shortAbsoluteDiffForHumans() }}</td>
-                    @can('edit')
+                    {{-- @can('edit')
                     <td>
                         <a href="" class="btn btn-sm btn-outline-success" data-toggle="modal"
                             data-department_id="{{ $item->id }}"
@@ -179,7 +179,7 @@
                             data-department_id="{{ $item->id }}"
                             data-target="#delete_department">{{ __('admin/blog.delete_department') }}</a>
                     </td>
-                    @endcan
+                    @endcan --}}
 
                 </tr>
             @empty
@@ -195,7 +195,7 @@
     {{ $departments->withQueryString()->appends(['search' => 1])->links() }}
 @endsection
 @section('js')
-    <script>
+    {{-- <script>
         $('#editdepartment').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var department_id = button.data('department_id')
@@ -210,7 +210,7 @@
             var modal = $(this)
             modal.find('.modal-body #delete_department').val(department_id);
         })
-    </script>
+    </script> --}}
 @endsection
 
 

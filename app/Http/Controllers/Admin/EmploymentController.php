@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Employment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\EmploymentModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,6 +51,12 @@ class EmploymentController extends Controller
 
         $job = Employment::findOrFail($id);
         return view('admin.job.edit' , compact('job'));
+    }
+    public function show($id){
+        $job = Employment::findOrFail($id);
+        $applications = EmploymentModel::where('job_code' , $job->slug)->get();
+        
+        return view('admin.job.show' , compact(['job' , 'applications']));
     }
 
     public function update(Request $request , $id){
