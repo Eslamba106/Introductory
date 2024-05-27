@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GeneralSetting extends Model
+class Nav extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'id', 'webname_en', 'webname_ar', 'description_en', 'description_ar', 'logo', 'created_at', 'updated_at' , 'parent_id'
+        'id', 'name_en', 'name_ar', 'description_en', 'description_ar', 'logo', 'created_at', 'updated_at' , 'parent_id'
     ];
 
     public function getImageUrlAttribute()
@@ -26,10 +25,9 @@ class GeneralSetting extends Model
     }
 
     public function parent(){
-        return $this->belongsTo(GeneralSetting::class , 'parent_id');
+        return $this->belongsTo(Nav::class , 'parent_id');
     }
     public function child(){
-        return $this->hasMany(GeneralSetting::class , 'parent_id');
+        return $this->hasMany(Nav::class , 'parent_id');
     }
-
 }

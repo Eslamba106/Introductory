@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_settings', function (Blueprint $table) {
+        Schema::create('navs', function (Blueprint $table) {
             $table->id();
-            $table->string('webname_en');
-            $table->string('webname_ar');
+            $table->string('name_en');
+            $table->string('name_ar');
             $table->longText('description_en');
             $table->longText('description_ar');
             $table->string('logo');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_settings');
+        Schema::dropIfExists('navs');
     }
 };

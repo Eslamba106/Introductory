@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\NavController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\NewsController;
@@ -56,8 +57,18 @@ Route::delete('pages/delete/{slug}' , [PageController::class , 'destroy'])->name
 ####################################### General Settings ####################################
 
 Route::get('/settings/general/index' , [GeneralSettingsController::class , 'index'])->name('admin.settings');
+Route::post('/settings/general/store' , [GeneralSettingsController::class , 'store'])->name('admin.settings.store');
 Route::get('/settings/general/edit' , [GeneralSettingsController::class , 'edit'])->name('admin.settings.edit');
 Route::put('/settings/general/update/{id}' , [GeneralSettingsController::class , 'update'])->name('admin.settings.update');
+
+####################################### List Settings ####################################
+####################################### General Settings ####################################
+
+Route::get('/settings/nav/index' , [NavController::class , 'index'])->name('admin.nav');
+Route::post('/settings/nav/store' , [NavController::class , 'store'])->name('admin.nav.store');
+Route::get('/settings/nav/edit' , [NavController::class , 'edit'])->name('admin.nav.edit');
+Route::put('/settings/nav/update/{id}' , [NavController::class , 'update'])->name('admin.nav.update');
+Route::get('/settings/nav/delete/{id}' , [NavController::class , 'delete'])->name('admin.nav.delete');
 
 ####################################### List Settings ####################################
 

@@ -12,6 +12,73 @@
     {{ __('admin/settings.settings') }}
 @endsection
 @section('content')
+
+<div class="m-2">
+    <a href="" class="btn btn-sm btn-outline-primary mr-2" href="#" data-category_id="" data-toggle="modal"
+        data-target="#category_id">{{ __('admin/blog.add_department') }}</a>
+</div>
+<div class="modal fade" id="category_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('admin/blog.add_department') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form action="{{ route('admin.settings.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <lable class="" for="">{{ __('admin/general.webname_ar') }}</lable>
+                            <input type="text" name="webname_ar" class="form-control" />
+                        </div>
+                       
+                        <div class="form-group">
+                            <lable for="">{{ __('admin/general.webname_en') }}</lable>
+                            <input type="text" name="webname_en" class="form-control">
+                        </div>
+                        {{-- <div class="form-group"> --}}
+{{-- 
+                            <lable for="">{{ __('admin/general.department') }}</lable>
+                            <select name="parent_id" id="validationCustom01" class="form-control">
+                                <option value="0">{{ __('admin/general.main') }}</option>
+                                @if ($general_settings)
+                                    
+                                @foreach ($general_settings as $item)
+                                    <option value="{{ $item->id }}">  @if (session()->has('locale') && session()->get('locale') == 'ar') {{ $item->webname_ar }}
+                                    @else {{ $item->webname_en }} @endif
+                                    </option>
+                                @endforeach
+                                
+                                @endif
+                            </select> --}}
+                            {{-- <input type="text" name="parent_id" class="form-control" > --}}
+                        {{-- </div>  --}}
+                        <div class="form-group">
+                            <lable for="">{{ __('admin/general.description_ar') }}</lable>
+                            <textarea name="description_ar" class="form-control" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <lable for="">{{ __('admin/general.description_en') }}</lable>
+                            <textarea name="description_en" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <lable for="">{{ __('admin/general.logo') }}</lable>
+                            <input type="file" name="logo" class="form-control" >
+                        </div>
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{ __('admin/blog.cancel') }}</button>
+                        <button type="submit" class="btn btn-success">{{ __('admin/blog.save') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -78,3 +145,23 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    {{-- <script>
+        $('#edit_category').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var category_id = button.data('category_id')
+            var modal = $(this)
+            modal.find('.modal-body #category_id').val(category_id);
+        })
+    </script> --}}
+    <script>
+        $('#delete_category').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var category_id = button.data('category_id')
+            var modal = $(this)
+            modal.find('.modal-body #delete_category').val(category_id);
+        })
+    </script>
+@endsection
+

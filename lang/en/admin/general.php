@@ -13,4 +13,6 @@ return [
     "description_ar" => "Description By Arabic",
     "last_update" => "Last Update" ,
     "update" => "Update Successfully!" ,
+    'department' => "Main Department",
+    'main'  => "Main",
 ];

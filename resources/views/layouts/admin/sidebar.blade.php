@@ -98,14 +98,14 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li>
-                                    <a href="{{ route('admin.list_settings') }}"
+                                    <a href="{{ route('admin.nav') }}"
                                         class="nav-link {{ request()->is('admin/settings/list_settings*') ? 'active' : '' }}">
                                         <p> &nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;{{ __('admin/settings.list_settings') }}
                                         </p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.list_settings.edit') }}"
+                                    <a href="{{ route('admin.nav.edit') }}"
                                         class="nav-link {{ request()->is('admin/settings/edit*') ? 'active' : '' }}">
 
 
@@ -114,12 +114,12 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
 
                             <a href="#"
                                 class="nav-link {{ request()->is('admin/settings/list_settings*') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                {{-- #{{ route('list_settings') }} --}}
+                                {{-- #{{ route('list_settings') }} 
                                 <p>{{ __('admin/settings.part_nav') }}</p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -139,7 +139,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         {{-- End List Settings --}}
 
 
