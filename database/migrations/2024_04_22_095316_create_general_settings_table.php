@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description_en');
             $table->longText('description_ar');
             $table->string('logo');
+            $table->foreignId('parent_id');
             $table->timestamps();
         });
     }

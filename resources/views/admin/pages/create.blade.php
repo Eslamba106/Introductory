@@ -51,6 +51,7 @@
     CKEDITOR.replace('editor');
 </script> --}}
 <script>
+    
     var inputElm = document.querySelector('[name=tags]');
     tagify = new Tagify (inputElm);
 

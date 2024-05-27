@@ -10,7 +10,7 @@ class GeneralSetting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id', 'webname_en', 'webname_ar', 'description_en', 'description_ar', 'logo', 'created_at', 'updated_at'
+        'id', 'webname_en', 'webname_ar', 'description_en', 'description_ar', 'logo', 'created_at', 'updated_at' , 'parent_id'
     ];
 
     public function getImageUrlAttribute()

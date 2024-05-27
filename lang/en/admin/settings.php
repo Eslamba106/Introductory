@@ -15,5 +15,6 @@ return [
     "update" => "Update",
     "info" => "Web Settings",
     'looking' => "Looking For a ",
-
+    'main_nav' => "Main Navbar",
+    "part_nav" => "Part Navbar",
 ];

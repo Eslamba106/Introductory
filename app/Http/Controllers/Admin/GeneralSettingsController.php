@@ -24,6 +24,36 @@ class GeneralSettingsController extends Controller
     $general_settings = GeneralSetting::first();
     return view('admin.general_settings.edit' , compact('general_settings'));
 }
+    public function store(Request $request){
+        
+        $request->validate([
+            'webname_en' => "required|string|max:255|min:3",
+            "webname_ar" => "required|string|max:255|min:3",
+            "description_en" => "required",
+            "description_ar" => "required",
+        ]);
+        // dd($request->all());
+        $setting = GeneralSetting::first();
+        $old_image = $setting->logo;
+        $data = $request->except('logo');
+        $new_image = $this->uploadImage($request);
+
+        if ($new_image) {
+            $data['image'] = $new_image;
+        }
+        // dd($new_image);
+        $setting->update([
+            "webname_en" => $request->webname_en,
+            "webname_ar" => $request->webname_ar,
+            "description_en" => $request->description_en,
+            "description_ar" => $request->description_ar,
+            "logo" => $new_image ?? $old_image ,
+        ]);
+        if ($old_image && $new_image) {
+            Storage::disk('public')->delete($old_image);
+        }
+        return redirect()->route('admin.settings')->with('success' ,"{{  __('admin/general.update') }}");
+    }
     public function update(Request $request){
         
         $request->validate([
