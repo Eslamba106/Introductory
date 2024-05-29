@@ -91,10 +91,36 @@
                         <li class="nav-item">
 
                             <a href="#"
-                                class="nav-link {{ request()->is('admin/settings/list_settings*') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('admin/settings/nav*') ? 'active' : '' }}">
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 {{-- #{{ route('list_settings') }} --}}
                                 <p>{{ __('admin/settings.main_nav') }}</p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li>
+                                    <a href="{{ route('admin.nav') }}"
+                                        class="nav-link {{ request()->is('admin/settings/nav*') ? 'active' : '' }}">
+                                        <p> &nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;{{ __('admin/settings.list_settings') }}
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="nav-link {{ request()->is('admin/settings/nav/edit*') ? 'active' : '' }}">
+
+
+                                        <p> &nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;{{ __('admin/settings.edit') }} </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="#"
+                                class="nav-link {{ request()->is('admin/settings/nav*') ? 'active' : '' }}">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                {{-- #{{ route('list_settings') }} --}}
+                                <p>{{ __('admin/settings.part_nav') }}</p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li>
@@ -105,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.nav.edit') }}"
+                                    <a href="#"
                                         class="nav-link {{ request()->is('admin/settings/edit*') ? 'active' : '' }}">
 
 

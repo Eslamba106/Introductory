@@ -66,7 +66,7 @@ Route::put('/settings/general/update/{id}' , [GeneralSettingsController::class ,
 
 Route::get('/settings/nav/index' , [NavController::class , 'index'])->name('admin.nav');
 Route::post('/settings/nav/store' , [NavController::class , 'store'])->name('admin.nav.store');
-Route::get('/settings/nav/edit' , [NavController::class , 'edit'])->name('admin.nav.edit');
+Route::get('/settings/nav/edit/{id}' , [NavController::class , 'edit'])->name('admin.nav.edit');
 Route::put('/settings/nav/update/{id}' , [NavController::class , 'update'])->name('admin.nav.update');
 Route::get('/settings/nav/delete/{id}' , [NavController::class , 'delete'])->name('admin.nav.delete');
 

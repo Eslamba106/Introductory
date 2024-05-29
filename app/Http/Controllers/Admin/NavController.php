@@ -22,15 +22,17 @@ class NavController extends Controller
     {
         $navs = Nav::get();
         // dd($general_settings->image_url);
-        return view('admin.nav.index' , compact('navs'));
+        return view('admin.nav.index', compact('navs'));
     }
     public function edit($id)
     {
-    $general_settings = Nav::findOrFail($id);
-    return view('admin.nav.edit' , compact('general_settings'));
-}
-    public function store(Request $request){
-        
+        $navs = Nav::get();
+        $general_settings = Nav::findOrFail($id);
+        return view('admin.nav.edit', compact(['general_settings' , 'navs']));
+    }
+    public function store(Request $request)
+    {
+
         $request->validate([
             'name_en' => "required|string|max:255|min:3",
             "name_ar" => "required|string|max:255|min:3",
@@ -47,27 +49,28 @@ class NavController extends Controller
         //     $data['image'] = $new_image;
         // }
         // dd($new_image);
-         Nav::create([
+        Nav::create([
             "name_en" => $request->name_en,
             "name_ar" => $request->name_ar,
             "description_en" => $request->description_en,
             "description_ar" => $request->description_ar,
             'parent_id'      => $request->parent_id,
-            "logo" => $new_image ?? "null" ,
+            "logo" => $new_image ?? "null",
         ]);
         // if ($old_image && $new_image) {
         //     Storage::disk('public')->delete($old_image);
         // }
-        return redirect()->route('admin.nav')->with('success' ,"{{  __('admin/general.update') }}");
+        return redirect()->route('admin.nav')->with('success', "{{  __('admin/general.update') }}");
     }
-    public function update(Request $request , $id){
-        
-        $request->validate([
-            'name_en' => "required|string|max:255|min:3",
-            "name_ar" => "required|string|max:255|min:3",
-            "description_en" => "required",
-            "description_ar" => "required",
-        ]);
+    public function update(Request $request, $id)
+    {
+
+        // $request->validate([
+        //     'name_en' => "required|string|max:255|min:3",
+        //     "name_ar" => "required|string|max:255|min:3",
+        //     "description_en" => "required",
+        //     "description_ar" => "required",
+        // ]);
         // dd($request->all());
         $setting =  Nav::findOrFail($id);
         $old_image = $setting->logo;
@@ -83,17 +86,18 @@ class NavController extends Controller
             "name_ar" => $request->name_ar,
             "description_en" => $request->description_en,
             "description_ar" => $request->description_ar,
-            "logo" => $new_image ?? $old_image ,
+            "logo" => $new_image ?? $old_image,
             'parent_id'      => $request->parent_id,
         ]);
         if ($old_image && $new_image) {
             Storage::disk('public')->delete($old_image);
         }
-        return redirect()->route('admin.nav')->with('success' ,"{{  __('admin/general.update') }}");
+        return redirect()->route('admin.nav')->with('success', "{{  __('admin/general.update') }}");
     }
 
 
-    public function delete($id){
+    public function delete($id)
+    {
         $artical = Nav::findOrFail($id);
         $artical->delete();
         return  redirect()->route('admin.nav');
@@ -113,5 +117,3 @@ class NavController extends Controller
         }
     }
 }
-
-
